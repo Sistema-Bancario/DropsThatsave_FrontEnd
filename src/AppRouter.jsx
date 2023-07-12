@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import HomePage from '../HomePage';
 import { ListaBancos } from './Banco/components/ListaBancos';
 import { Login } from './Login/components/Login';
+import { isUserAuthenticated } from "./Login/helpers/LoginHelper";
+import {ListaUsuarios} from "./USER/components/ListaUsers"
 import Prueba from './prueba';
 import PruebaUser from './PruebaUser';
 
@@ -55,16 +57,27 @@ const AppRouter = () => {
                 />
                 
                 <Route
-//                    path="/ListaBancos"
-//                    element={
-//                        isAuthenticated() ? (
-//                            <>
-//                                <ListaBancos />
-//                            </>
-//                        ) : (
-//                            <Navigate />
-//                        )
-//                    }
+                   path="/ListaBancos"
+                    element={
+                        isUserAuthenticated() ? (
+                            <>
+                                <ListaBancos />                            </>
+                        ) : (
+                            <Navigate to="/Login"/>
+                        )
+                    }
+                />
+                <Route
+                    path="/ListaUsuarios"
+                    element={
+                        isUserAuthenticated() ? (
+                            <>
+                                <ListaUsuarios />
+                           </>
+                        ) : (
+                            <Navigate to="/Login"/>
+                        )
+                    }
                 />
             </Routes>
         </BrowserRouter>
