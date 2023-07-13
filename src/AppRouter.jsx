@@ -4,7 +4,10 @@ import HomePage from '../HomePage';
 import { ListaBancos } from './Banco/components/ListaBancos';
 import { Login } from './Login/components/Login';
 import { isUserAuthenticated } from "./Login/helpers/LoginHelper";
-import {ListaUsuarios} from "./USER/components/ListaUsers"
+import {ListaUsers} from "./USER/components/ListaUsers"
+import {ListaAdmins} from "./ADMIN/components/ListaAdmins"
+import {CreateUserAdmin} from "./ADMIN/components/AgregarAdmin"
+
 import Prueba from './prueba';
 import PruebaUser from './PruebaUser';
 
@@ -72,7 +75,32 @@ const AppRouter = () => {
                     element={
                         isUserAuthenticated() ? (
                             <>
-                                <ListaUsuarios />
+                                <ListaUsers />
+                           </>
+                        ) : (
+                            <Navigate to="/Login"/>
+                        )
+                    }
+                />
+
+                <Route
+                    path="/ListaAdmins"
+                    element={
+                        isUserAuthenticated() ? (
+                            <>
+                                <ListaAdmins />
+                           </>
+                        ) : (
+                            <Navigate to="/Login"/>
+                        )
+                    }
+                />
+                <Route
+                    path="/agregarAdmin"
+                    element={
+                        isUserAuthenticated() ? (
+                            <>
+                                <CreateUserAdmin />
                            </>
                         ) : (
                             <Navigate to="/Login"/>
