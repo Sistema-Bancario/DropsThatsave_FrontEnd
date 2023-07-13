@@ -1,5 +1,5 @@
 
-export const isAuthenticated = () => {
+export const isUserAuthenticated = () => {
     if (localStorage.getItem("token")) {
       return true;
     }
