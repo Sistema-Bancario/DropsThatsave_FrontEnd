@@ -7,7 +7,7 @@ import { isUserAuthenticated } from "./Login/helpers/LoginHelper";
 import {ListaUsers} from "./USER/components/ListaUsers"
 import {ListaAdmins} from "./ADMIN/components/ListaAdmins"
 import {CreateUserAdmin} from "./ADMIN/components/AgregarAdmin"
-
+import { ListaSolicitudess } from './Solicitudes/components/ListaSolicitudes';
 import Prueba from './prueba';
 import PruebaUser from './PruebaUser';
 
@@ -107,7 +107,20 @@ const AppRouter = () => {
                         )
                     }
                 />
+                <Route
+                    path="/ListaSolicitudes"
+                    element={
+                        isUserAuthenticated() ? (
+                            <>
+                                <ListaSolicitudess />
+                           </>
+                        ) : (
+                            <Navigate to="/Login"/>
+                        )
+                    }
+                />
             </Routes>
+            
         </BrowserRouter>
     )
 }
