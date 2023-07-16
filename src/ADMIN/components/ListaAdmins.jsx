@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom'
 import Swal from "sweetalert2";
-import { user } from "../model/users";
-import { apiUser, DeleteUser } from "../api/apiUser";
+import { user } from "../model/userAdmin";
+import { DeleteUser,apiUser } from "../api/apiAdmin";
 
 
-export const ListaUsers = () => {
+export const ListaAdmins = () => {
   const [listaUsers, setListaUsers] = useState([]);
   const [error, setError] = useState(null);
   const [users, setUsers] = useState(user);
+  
   const viewUsersList = async () => {
     try {
       const getListaUsersFromApi = await apiUser();
       setListaUsers(getListaUsersFromApi[1]);
-    }catch (error) {
-        setError(error);
-      }
-    };
+    } catch (error) {
+      setError(error);
+    }
+  };
   
   useEffect(() => {
     viewUsersList();
@@ -50,14 +51,22 @@ export const ListaUsers = () => {
 
   return (
     <>
+    <section>
+        <Link to ="/agregarAdmin">
+    <button  className="btn btn-warning" >
+                        Agregar
+    </button>
+    </Link>
+    </section>
+    <br/>
     <section id="promo" className="promo section offset-header ">
         <div className="container text-center">
           <br /><br />
 
           <h2 className="title">
-            Usuarios
+           Administradores
           </h2>
-          <p className="intro">Listado de los Usuarios</p>
+          <p className="intro">Listado de los Administradores</p>
           <ul className="meta list-inline">
             <li className="list-inline-item"></li>
           </ul>
@@ -72,10 +81,8 @@ export const ListaUsers = () => {
                 <th scope="col">Nombre</th>
                 <th scope="col">Correo</th>
                 <th scope="col">Rol</th>
-                <th scope="col">Sangre</th>
-                <th scope="col">Teléfono</th>
-                <th scope="col">Dirección</th>
-               
+                
+                
               </tr>
             </thead>
             <tbody>
@@ -85,12 +92,10 @@ export const ListaUsers = () => {
                     <td>{user.nombre}</td>
                     <td>{user.correo}</td>
                     <td>{user.rol}</td>
-                    <td>{user.tipoSangre}</td>
-                    <td>{user.telefono}</td>
-                    <td>{user.direccion}</td>
+                    
                     
                     <td>
-                     
+                      
                       <button className="btn btn-danger" onClick={() => eliminarUsers(user._id)}>
                         Eliminar
                       </button>
@@ -101,6 +106,7 @@ export const ListaUsers = () => {
             </tbody>
           </table>
         </div>
+       
       </div>
     </>
   );

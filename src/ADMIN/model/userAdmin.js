@@ -3,8 +3,5 @@ export const user = {
     correo:"",
     password:"",
     rol: "",
-    tipoSangre: "",
-    telefono: "",
-    direccion: "",
-    
+    enfermedad: "" 
 }
