@@ -3,29 +3,34 @@ import Swal from "sweetalert2";
 const token = localStorage.getItem("token");
 const URL = "http://localhost:8080/api/bancos/";
 
+
 export const apiBancos = async () => {
     try {
-        const listaBancos = await axios.get(`${URL}mostrarBancos`,
-            { headers: { "x-token": token } });
-        return listaBancos.data.listaBancos;
+        const response = await axios.get(`${URL}mostrarBancos`, {
+            headers: { "x-token": token },
+        });
 
-    } catch ({ response: { data } }) {
-        return data.msg;
+        return response.data.bancos;
+
+    } catch (error) {
+        console.log(error);
+        return [];
     }
-}
+};
+
 
 export const createBanco = async ({ nombre, direccion, telefono, apertura, cierre }) => {
     try {
         const response = await axios.post(`${URL}agregar`, {
             nombre: nombre,
-            direccion: direccion, 
-            telefono: telefono, 
-            apertura: apertura, 
+            direccion: direccion,
+            telefono: telefono,
+            apertura: apertura,
             cierre: cierre
-        } , {headers: {"x-token": token}});
+        }, { headers: { "x-token": token } });
         return true;
 
-    } catch ({response: {data}}) {
+    } catch ({ response: { data } }) {
         Swal.fire({
             icon: "error",
             title: "Ocurrió un error",
@@ -38,8 +43,8 @@ export const createBanco = async ({ nombre, direccion, telefono, apertura, cierr
 export const updateBanco = async (id, nombre, direccion, telefono) => {
     try {
         const bancoEditado = await axios.put(`${URL}editar/${id}`, {
-            nombre, 
-            direccion, 
+            nombre,
+            direccion,
             telefono
         }, { headers: { "x-token": token } });
         return bancoEditado.data;
@@ -55,11 +60,11 @@ export const updateBanco = async (id, nombre, direccion, telefono) => {
 
 export const deleteBanco = async (id) => {
     try {
-        const {data} = await axios.delete(`${URL}eliminar/${id}`,
+        const { data } = await axios.delete(`${URL}eliminar/${id}`,
             { headers: { "x-token": token } });
         return true;
 
-    } catch ({response: {data: {message}}}) {
+    } catch ({ response: { data: { message } } }) {
         if (msg === "Delete Banco") {
             window.location.href = "/";
         }

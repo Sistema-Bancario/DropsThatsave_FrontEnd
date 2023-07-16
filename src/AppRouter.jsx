@@ -62,7 +62,7 @@ const AppRouter = () => {
                 <Route
                    path="/ListaBancos"
                     element={
-                        isUserAuthenticated() ? (
+                        isUserAuthenticated() && isAdmin() ? (
                             <>
                                 <ListaBancos />                            </>
                         ) : (

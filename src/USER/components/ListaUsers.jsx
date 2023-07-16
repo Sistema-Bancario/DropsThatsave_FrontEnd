@@ -13,11 +13,11 @@ export const ListaUsers = () => {
     try {
       const getListaUsersFromApi = await apiUser();
       setListaUsers(getListaUsersFromApi[1]);
-    }catch (error) {
-        setError(error);
-      }
-    };
-  
+    } catch (error) {
+      setError(error);
+    }
+  };
+
   useEffect(() => {
     viewUsersList();
   }, []);
@@ -50,7 +50,7 @@ export const ListaUsers = () => {
 
   return (
     <>
-    <section id="promo" className="promo section offset-header ">
+      <section id="promo" className="promo section offset-header ">
         <div className="container text-center">
           <br /><br />
 
@@ -75,7 +75,7 @@ export const ListaUsers = () => {
                 <th scope="col">Sangre</th>
                 <th scope="col">Teléfono</th>
                 <th scope="col">Dirección</th>
-               
+                <th scope="col">Tatuajes</th>
               </tr>
             </thead>
             <tbody>
@@ -88,9 +88,9 @@ export const ListaUsers = () => {
                     <td>{user.tipoSangre}</td>
                     <td>{user.telefono}</td>
                     <td>{user.direccion}</td>
-                    
+                    <td>{user.tatuajes}</td>
                     <td>
-                     
+
                       <button className="btn btn-danger" onClick={() => eliminarUsers(user._id)}>
                         Eliminar
                       </button>

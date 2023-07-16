@@ -21,24 +21,25 @@ export const Login = () => {
         event.preventDefault();
         const result = await apiLogin(correo, password);
         if (result) {
-            Swal.fire({
-                icon: "success",
-                title: "Usuario Verificado!",
-                text: "Ha iniciado sesion correctamente",
-                confirmButtonText: "Ok",
-            }).then((r) => {
-                if (r.isConfirmed) {
-                    const { rol } = result;
-                    console.log(rol)
-                    if (rol === 'ADMIN_ROLE') {
-                        window.location.href = "/prueba";
-                    } else if (rol === 'USER_ROLE') {
-                        window.location.href = "/pruebaUser";
-                    }
-                }
-            });
+          const { rol } = result;
+          localStorage.setItem("role", rol);
+          Swal.fire({
+            icon: "success",
+            title: "Usuario Verificado!",
+            text: "Ha iniciado sesión correctamente",
+            confirmButtonText: "Ok",
+          }).then((r) => {
+            if (r.isConfirmed) {
+              if (rol === "ADMIN_ROLE") {
+                window.location.href = "/ListaBancos";
+              } else if (rol === "USER_ROLE") {
+                window.location.href = "/pruebaUser";
+              }
+            }
+          });
         }
-    };
+      };
+      
 
     return (
         <MDBContainer fluid>
