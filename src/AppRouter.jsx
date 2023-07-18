@@ -3,13 +3,14 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import HomePage from '../HomePage';
 import { ListaBancos } from './Banco/components/ListaBancos';
 import { Login } from './Login/components/Login';
-import { isUserAuthenticated } from "./Login/helpers/LoginHelper";
-import {ListaUsers} from "./USER/components/ListaUsers"
-import {ListaAdmins} from "./ADMIN/components/ListaAdmins"
-import {CreateUserAdmin} from "./ADMIN/components/AgregarAdmin"
+import { isAdmin, isUser, isUserAuthenticated } from "./Login/helpers/LoginHelper";
+import { ListaUsers } from "./USER/components/ListaUsers"
+import { ListaAdmins } from "./ADMIN/components/ListaAdmins"
+import { CreateUserAdmin } from "./ADMIN/components/AgregarAdmin"
 import { ListaSolicitudess } from './Solicitudes/components/ListaSolicitudes';
 import Prueba from './prueba';
 import PruebaUser from './PruebaUser';
+import { CreateBanco } from './Banco/components/AgregarBancos';
 
 const AppRouter = () => {
     return (
@@ -29,7 +30,7 @@ const AppRouter = () => {
                         <PruebaUser></PruebaUser>
                     }
                 />
-                                                            {/* EJEMPLO PARA USAR AUTHENTICATED */}
+                {/* EJEMPLO PARA USAR AUTHENTICATED */}
                 {/* <Route
                     path="/URL/:id"
                     element={
@@ -43,7 +44,7 @@ const AppRouter = () => {
                         )
                     }
                 /> */}
-                
+
                 {/* HOMEPAGE */}
                 <Route
                     path="/"
@@ -58,27 +59,42 @@ const AppRouter = () => {
                         <Login></Login>
                     }
                 />
-                
+
                 <Route
-                   path="/ListaBancos"
+                    path="/ListaBancos"
                     element={
                         isUserAuthenticated() && isAdmin() ? (
                             <>
-                                <ListaBancos />                            </>
+                                <ListaBancos />                            
+                            </>
                         ) : (
-                            <Navigate to="/Login"/>
+                            <Navigate to="/Login" />
                         )
                     }
                 />
+
+                <Route
+                    path="/agregarBanco"
+                    element={
+                        isUserAuthenticated() ? (
+                            <>
+                                <CreateBanco/>
+                            </>
+                        ) : (
+                            <Navigate to="/Login" />
+                        )
+                    }
+                />
+
                 <Route
                     path="/ListaUsuarios"
                     element={
                         isUserAuthenticated() ? (
                             <>
                                 <ListaUsers />
-                           </>
+                            </>
                         ) : (
-                            <Navigate to="/Login"/>
+                            <Navigate to="/Login" />
                         )
                     }
                 />
@@ -89,9 +105,9 @@ const AppRouter = () => {
                         isUserAuthenticated() ? (
                             <>
                                 <ListaAdmins />
-                           </>
+                            </>
                         ) : (
-                            <Navigate to="/Login"/>
+                            <Navigate to="/Login" />
                         )
                     }
                 />
@@ -101,9 +117,9 @@ const AppRouter = () => {
                         isUserAuthenticated() ? (
                             <>
                                 <CreateUserAdmin />
-                           </>
+                            </>
                         ) : (
-                            <Navigate to="/Login"/>
+                            <Navigate to="/Login" />
                         )
                     }
                 />
@@ -113,14 +129,14 @@ const AppRouter = () => {
                         isUserAuthenticated() ? (
                             <>
                                 <ListaSolicitudess />
-                           </>
+                            </>
                         ) : (
-                            <Navigate to="/Login"/>
+                            <Navigate to="/Login" />
                         )
                     }
                 />
             </Routes>
-            
+
         </BrowserRouter>
     )
 }

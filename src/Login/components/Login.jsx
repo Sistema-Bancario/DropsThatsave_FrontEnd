@@ -31,7 +31,7 @@ export const Login = () => {
           }).then((r) => {
             if (r.isConfirmed) {
               if (rol === "ADMIN_ROLE") {
-                window.location.href = "/ListaBancos";
+                window.location.href = "/ListaAdmins";
               } else if (rol === "USER_ROLE") {
                 window.location.href = "/pruebaUser";
               }

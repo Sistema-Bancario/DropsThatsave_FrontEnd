@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom'
 import Swal from "sweetalert2";
 import { user } from "../model/userAdmin";
-import { DeleteUser,apiUser } from "../api/apiAdmin";
+import { DeleteUser, apiUser } from "../api/apiAdmin";
 
 
 export const ListaAdmins = () => {
   const [listaUsers, setListaUsers] = useState([]);
   const [error, setError] = useState(null);
   const [users, setUsers] = useState(user);
-  
+
   const viewUsersList = async () => {
     try {
       const getListaUsersFromApi = await apiUser();
@@ -18,7 +18,7 @@ export const ListaAdmins = () => {
       setError(error);
     }
   };
-  
+
   useEffect(() => {
     viewUsersList();
   }, []);
@@ -51,20 +51,14 @@ export const ListaAdmins = () => {
 
   return (
     <>
-    <section>
-        <Link to ="/agregarAdmin">
-    <button  className="btn btn-warning" >
-                        Agregar
-    </button>
-    </Link>
-    </section>
-    <br/>
-    <section id="promo" className="promo section offset-header ">
+
+      <br />
+      <section id="promo" className="promo section offset-header ">
         <div className="container text-center">
           <br /><br />
 
           <h2 className="title">
-           Administradores
+            Administradores
           </h2>
           <p className="intro">Listado de los Administradores</p>
           <ul className="meta list-inline">
@@ -73,7 +67,19 @@ export const ListaAdmins = () => {
         </div>
       </section>
 
+      <div className="container table-container">
+        <section>
+          <Link to="/agregarAdmin">
+            <button className="btn btn-secondary" >
+              Agregar un Administrador
+            </button>
+          </Link>
+        </section>
+      </div>
+
+
       <div className="container mt-4 mb-5 table-container">
+
         <div className="table-responsive text-center">
           <table className="table ml-auto custom-table-margin">
             <thead className="thead-dark">
@@ -81,8 +87,8 @@ export const ListaAdmins = () => {
                 <th scope="col">Nombre</th>
                 <th scope="col">Correo</th>
                 <th scope="col">Rol</th>
-                
-                
+
+
               </tr>
             </thead>
             <tbody>
@@ -92,10 +98,10 @@ export const ListaAdmins = () => {
                     <td>{user.nombre}</td>
                     <td>{user.correo}</td>
                     <td>{user.rol}</td>
-                    
-                    
+
+
                     <td>
-                      
+
                       <button className="btn btn-danger" onClick={() => eliminarUsers(user._id)}>
                         Eliminar
                       </button>
@@ -106,7 +112,7 @@ export const ListaAdmins = () => {
             </tbody>
           </table>
         </div>
-       
+
       </div>
     </>
   );
