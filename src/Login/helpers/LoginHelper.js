@@ -20,3 +20,14 @@ export const isUser = () => {
   const role = getUserRole();
   return role === "USER_ROLE";
 };
+
+
+export const tieneTatuajes = () => {
+  const tatuajes = localStorage.getItem("tatuajes");
+  return tatuajes === "false";
+};
+
+export const tieneEnfermedad = () => {
+  const enfermedad = localStorage.getItem("enfermedad");
+  return enfermedad === "false";
+};

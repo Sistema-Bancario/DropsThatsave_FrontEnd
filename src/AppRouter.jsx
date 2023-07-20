@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import HomePage from '../HomePage';
 import { ListaBancos } from './Banco/components/ListaBancos';
 import { Login } from './Login/components/Login';
-import { isAdmin, isUser, isUserAuthenticated } from "./Login/helpers/LoginHelper";
+import { isAdmin, isUser, isUserAuthenticated, tieneEnfermedad, tieneTatuajes } from "./Login/helpers/LoginHelper";
 import { ListaUsers } from "./USER/components/ListaUsers"
 import { ListaAdmins } from "./ADMIN/components/ListaAdmins"
 import { CreateUserAdmin } from "./ADMIN/components/AgregarAdmin"
@@ -11,7 +11,11 @@ import { ListaSolicitudess } from './Solicitudes/components/ListaSolicitudes';
 import Prueba from './prueba';
 import PruebaUser from './PruebaUser';
 import { CreateBanco } from './Banco/components/AgregarBancos';
-import Registro from './Registro';
+import { HacerSolicitud } from './Solicitudes/components/HacerSolicitud';
+import NavbarUser from './NavbarUser';
+import Fondo from './Fondo';
+import Registro from './USER/components/Registro';
+
 
 const AppRouter = () => {
     return (
@@ -60,7 +64,7 @@ const AppRouter = () => {
                         <Login></Login>
                     }
                 />
-                   <Route
+                <Route
                     path="/Registro"
                     element={
                         <Registro></Registro>
@@ -72,7 +76,7 @@ const AppRouter = () => {
                     element={
                         isUserAuthenticated() && isAdmin() ? (
                             <>
-                                <ListaBancos />                            
+                                <ListaBancos />
                             </>
                         ) : (
                             <Navigate to="/Login" />
@@ -85,7 +89,7 @@ const AppRouter = () => {
                     element={
                         isUserAuthenticated() ? (
                             <>
-                                <CreateBanco/>
+                                <CreateBanco />
                             </>
                         ) : (
                             <Navigate to="/Login" />
@@ -118,6 +122,7 @@ const AppRouter = () => {
                         )
                     }
                 />
+
                 <Route
                     path="/agregarAdmin"
                     element={
@@ -133,9 +138,25 @@ const AppRouter = () => {
                 <Route
                     path="/ListaSolicitudes"
                     element={
-                        isUserAuthenticated() ? (
+                        isUserAuthenticated() && isUser() && tieneTatuajes() && tieneEnfermedad()  ? (
                             <>
+                                <NavbarUser></NavbarUser>
                                 <ListaSolicitudess />
+                                <Fondo></Fondo>
+                            </>
+                        ) : (
+                            <Navigate to="/Login" />
+                        )
+                    }
+                />
+
+                <Route
+                    path="/hacerSolicitud"
+                    element={
+                        isUserAuthenticated() && isUser() ? (
+                            <>
+                                <NavbarUser></NavbarUser>
+                                <HacerSolicitud />
                             </>
                         ) : (
                             <Navigate to="/Login" />

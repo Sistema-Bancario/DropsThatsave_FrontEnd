@@ -2,10 +2,10 @@ export const userRegistro = {
     nombre: "",
     correo:"",
     password:"",
-    tatuajes: true,
+    tatuajes: false,
     tipoSangre: "",
     telefono: "",
     direccion: "",
-    enfermedades: true,
-    imagen:""
+    enfermedad: false,
+    img:""
 }

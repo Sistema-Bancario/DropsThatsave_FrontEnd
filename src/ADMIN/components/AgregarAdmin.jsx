@@ -9,7 +9,7 @@ export const CreateUserAdmin = () => {
     const [agregar, setAgregar] = useState(user);
     const handleSubmit = (event) => {
         event.preventDefault();
-        sendData( agregar , 1, 0);
+        sendData(agregar, 1, 0);
     };
 
     return (
@@ -88,7 +88,7 @@ export const CreateUserAdmin = () => {
                         ></input>
                     </div>
 
-              
+
                     <div className="container text-center">
                         <button id="btn-enviar" type="submit" className="btn">
                             Enviar

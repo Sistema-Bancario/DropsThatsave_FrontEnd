@@ -10,10 +10,12 @@ export const apiLogin = async (correo, password) => {
       password,
     });
 
-    const { token, rol } = response.data;
-
+    const { token, rol, tatuajes, enfermedad } = response.data;
+    console.log(tatuajes)
     token ? localStorage.setItem("token", token) : null;
-    return { token, rol };
+    localStorage.setItem("tatuajes", tatuajes);
+    localStorage.setItem("enfermedad", enfermedad);
+    return { token, rol, tatuajes, enfermedad };
   } catch ({
     response: {
       data: { message },

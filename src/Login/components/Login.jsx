@@ -33,7 +33,7 @@ export const Login = () => {
               if (rol === "ADMIN_ROLE") {
                 window.location.href = "/ListaAdmins";
               } else if (rol === "USER_ROLE") {
-                window.location.href = "/pruebaUser";
+                window.location.href = "/hacerSolicitud";
               }
             }
           });

@@ -1,32 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/Logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DROPS THAT SAVE</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css%22%3E"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css%22%3E"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css%22%3E"/>
-    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet" />
-    <link rel="stylesheet" href="https://pattern.kivan-works.com/fonts/kredit.css" />
-  <link rel="stylesheet" href="node_modules/mdbootstrap/css/style.css"/>
-  </head>
-  <body>
-    <div id="root"></div>
-   
-    <script type="module" src="/src/main.jsx"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-      crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/96b5247119.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js%22%3E"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js%22%3E"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js%22%3E"></script>
-    <script src="https://kit.fontawesome.com/a36d4f6130.js" crossorigin="anonymous"></script>
-  </body>
 
-</html>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/Logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DROPS THAT SAVE</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(function (canv, particleSize = 20, particleCount = 110, interval = 200, W = window.innerWidth, H = window.innerHeight) {
+
+      var W, H, canvas, ctx, particles = [];
+
+      W = W
+      H = H
+      var canvas = canv;
+      canvas.width = W;
+      canvas.height = H;
+
+      canvas = $("#canvas").get(0);
+      canvas.width = W;
+      canvas.height = H;
+
+      ctx = canvas.getContext("2d");
+      ctx.globalCompositeOperation = "lighter";
+
+      var mouse = {
+        x: 0,
+        y: 0,
+        rx: 0,
+        ry: 0
+      };
+
+      var counter = 0;
+
+      function randomNorm(mean, stdev) {
+
+        return Math.abs(Math.round((Math.random() * 2 - 1) + (Math.random() * 2 - 1) + (Math.random() * 2 - 1)) * stdev) + mean;
+      }
+
+
+      function Particle() {
+        //---------------------- PARTICLE COLORS
+        this.h = parseInt(360, 10);
+        this.s = parseInt(55 * Math.random() + 50, 10);
+        this.l = parseInt(25 * Math.random() + 50, 10);
+        this.a = 0.5 * Math.random();
+
+        this.color = "hsla(" + this.h + "," + this.s + "%," + this.l + "%," + (this.a) + ")";
+        this.shadowcolor = "hsla(" + this.h + "," + this.s + "%," + this.l + "%," + parseFloat(this.a - 0.55) + ")";
+        //--------------------------------------                
+
+        this.x = Math.random() * W;
+        this.y = Math.random() * H;
+        this.direction = {
+          "x": -1 + Math.random() * 2,
+          "y": -1 + Math.random() * 2
+        };
+
+        this.radius = randomNorm(0, particleSize);
+        this.scale = 0.8 * Math.random() + 0.5;
+        this.rotation = Math.PI / 4 * Math.random();
+
+        this.grad = ctx.createRadialGradient(this.x, this.y, this.radius, this.x, this.y, 0);
+
+        this.grad.addColorStop(0, this.color);
+        this.grad.addColorStop(1, this.shadowcolor);
+
+        this.vx = (2 * Math.random() + 4) * .01 * this.radius;
+        this.vy = (2 * Math.random() + 4) * .01 * this.radius;
+
+        this.valpha = 0.01 * Math.random() - 0.02;
+
+        this.move = function () {
+          this.x += this.vx * this.direction.x;
+          this.y += this.vy * this.direction.y;
+          this.rotation += this.valpha;
+        };
+
+        this.changeDirection = function (axis) {
+          this.direction[axis] *= -1;
+          this.valpha *= -1;
+        };
+        this.draw = function () {
+          ctx.save();
+          ctx.translate(this.x + mouse.rx / -20 * this.radius, this.y + mouse.ry / -20 * this.radius);
+          ctx.rotate(this.rotation);
+          ctx.scale(1, this.scale);
+
+          this.grad = ctx.createRadialGradient(0, 0, this.radius, 0, 0, 0);
+          this.grad.addColorStop(1, this.color);
+          this.grad.addColorStop(0, this.shadowcolor);
+          ctx.beginPath();
+          ctx.fillStyle = this.grad;
+          ctx.arc(0, 0, this.radius, 0, Math.PI * 2, false);
+          ctx.fill();
+          ctx.restore();
+
+
+        };
+        this.boundaryCheck = function () {
+          if (this.x >= W * 1.2) {
+            this.x = W * 1.2;
+            this.changeDirection("x");
+          } else if (this.x <= -W * 0.2) {
+            this.x = -W * 0.2;
+            this.changeDirection("x");
+          }
+          if (this.y >= H * 1.2) {
+            this.y = H * 1.2;
+            this.changeDirection("y");
+          } else if (this.y <= -H * 0.2) {
+            this.y = -H * 0.2;
+            this.changeDirection("y");
+          }
+        };
+      }
+
+      function clearCanvas() {
+        ctx.clearRect(6, 10, W, H);
+      }
+
+      function createParticles() {
+        for (var i = particleCount - 1; i >= 0; i--) {
+          p = new Particle();
+          particles.push(p);
+        }
+      }
+
+      function drawParticles() {
+        for (var i = particleCount - 1; i >= 0; i--) {
+          p = particles[i];
+          p.draw();
+        }
+
+
+      }
+
+      function updateParticles() {
+        for (var i = particles.length - 1; i >= 0; i--) {
+          p = particles[i];
+          p.move();
+          p.boundaryCheck();
+        }
+      }
+
+      function initParticleSystem() {
+        createParticles();
+        drawParticles();
+      }
+
+      function animateParticles() {
+        clearCanvas();
+        setDelta();
+        update()
+        drawParticles();
+        updateParticles();
+        requestAnimationFrame(animateParticles);
+      }
+
+      initParticleSystem();
+      requestAnimationFrame(animateParticles);
+
+      function setDelta() {
+        this.now = (new Date()).getTime();
+        mouse.delta = (this.now - this.then) / 1000;
+        this.then = this.now;
+      }
+      function update() {
+
+        if (isNaN(mouse.delta) || mouse.delta <= 0) { return; }
+
+        var distX = mouse.x - (mouse.rx),
+          distY = mouse.y - (mouse.ry);
+
+        if (distX !== 0 && distY !== 0) {
+
+          mouse.rx -= ((mouse.rx - mouse.x) / mouse.speed);
+          mouse.ry -= ((mouse.ry - mouse.y) / mouse.speed);
+
+        }
+      };
+    });
+  
+  
+  </script>
+
+
+</body>

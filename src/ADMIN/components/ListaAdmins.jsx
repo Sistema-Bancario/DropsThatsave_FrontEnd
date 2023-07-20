@@ -53,7 +53,7 @@ export const ListaAdmins = () => {
     <>
 
       <br />
-      <section id="promo" className="promo section offset-header ">
+      <section id="promo" className="promo  ">
         <div className="container text-center">
           <br /><br />
 

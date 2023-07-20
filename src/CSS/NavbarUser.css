@@ -1,0 +1,90 @@
+/* Navbar.css */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+
+.custom-navbar {
+  background: rgb(0, 0, 0);
+  padding: 20px;
+}
+
+.custom-navbar .navbar-brand {
+  color: #e50303;
+  font-family: 'Merriweather', sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.custom-navbar .blood-drop {
+  font-size: 36px;
+  margin-right: 10px;
+}
+
+.custom-navbar .navbar-nav .nav-link {
+  font-size: 18px;
+  position: relative;
+  margin-right: 30px;
+  color: #ffffff;
+}
+
+.custom-navbar .navbar-nav .nav-link:hover,
+.custom-navbar .navbar-nav .nav-link.active {
+  color: #b10000;
+}
+
+.custom-navbar .drop-container {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.custom-navbar .drop {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #d05050;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: dropAnimation 0.6s ease-out infinite;
+}
+
+@keyframes dropAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.custom-navbar .nav-item.active .drop-container {
+  display: none;
+}
+
+.custom-navbar .nav-link:hover .drop-container {
+  display: flex;
+}
+
+.custom-navbar .drop:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.custom-navbar .drop:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.custom-navbar .drop:nth-child(3) {
+  animation-delay: 0.4s;
+}
