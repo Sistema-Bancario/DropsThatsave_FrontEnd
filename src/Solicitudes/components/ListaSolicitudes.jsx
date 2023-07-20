@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { solicitude } from "../model/solicitud";
 import { apiSolicitud } from "../api/apiSolicitud";
+import { AceptarSolicitud } from "./AceptarSolicitud";
 
 
 export const ListaSolicitudess = () => {
   const [listaSolicitudes, setListaSolicitudes] = useState([]);
   const [error, setError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const [solicitud, setSolicitudes] = useState(solicitude);
+
   const viewSolicitudesList = async () => {
     try {
       const getListaSolicitudesFromApi = await apiSolicitud();
@@ -16,7 +19,13 @@ export const ListaSolicitudess = () => {
         setError(error);
       }
     };
-  
+  const handleOpenModal = (solicitud) => {
+    setShowModal(true);
+    setSolicitudes(solicitud);
+  };
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
     useEffect(() => {
         const viewSolicitudesList = async () => {
           try {
@@ -63,10 +72,17 @@ export const ListaSolicitudess = () => {
             <p>Tipo de Sangre: {solicitud.tipoSangre}</p>
             <p>Banco: {solicitud.banco}</p>
             <p>Litros: {solicitud.litros}</p>
-            <button className="btn btn-primary">Aceptar</button>
+            <button className="btn btn-primary" onClick={() => handleOpenModal(solicitud)}>
+                        Donar
+            </button>
           </div>
         );
       })}
+      <AceptarSolicitud
+          solicitud={solicitud}
+          isOpen={showModal}
+          onClose={() => handleCloseModal()}
+      ></AceptarSolicitud>
     </div>
     </>
   );
