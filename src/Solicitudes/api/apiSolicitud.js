@@ -40,3 +40,34 @@ export const createSolicitud = async ({ tipoSangre, banco, litros }) => {
   }
 };
 
+export const aceptarSolicitud = async ({
+  idSolicitud,
+  litrosDonados,
+  enfermedad
+  
+}) => {
+ 
+  try {
+    console.log(idSolicitud)
+    console.log(litrosDonados)
+    console.log(enfermedad)
+    const response = await axios.post(
+      `http://localhost:8080/api/donaciones/aceptar`,
+      {
+        solicitud: idSolicitud ,
+        litrosDonados: litrosDonados ,
+        enfermedad: enfermedad
+      
+      },
+      { headers: { "x-token": token } }
+    );
+    
+    return true;
+  } catch ({ response: { data: {msg} } }) {
+    Swal.fire({
+      icon: "error",
+      title: "Ocurrió un error",
+      text: msg,
+    });
+  }
+};

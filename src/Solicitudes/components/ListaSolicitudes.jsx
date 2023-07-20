@@ -4,12 +4,15 @@ import { solicitude } from "../model/solicitud";
 import { apiSolicitud } from "../api/apiSolicitud";
 import { Link } from 'react-router-dom'
 
+import { AceptarSolicitud } from "./AceptarSolicitud";
 
 
 export const ListaSolicitudess = () => {
   const [listaSolicitudes, setListaSolicitudes] = useState([]);
   const [error, setError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const [solicitud, setSolicitudes] = useState(solicitude);
+
   const viewSolicitudesList = async () => {
     try {
       const getListaSolicitudesFromApi = await apiSolicitud();
@@ -34,6 +37,28 @@ export const ListaSolicitudess = () => {
     };
     viewSolicitudesList();
   }, []);
+  const handleOpenModal = (solicitud) => {
+    setShowModal(true);
+    setSolicitudes(solicitud);
+  };
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+    useEffect(() => {
+        const viewSolicitudesList = async () => {
+          try {
+            const getListaSolicitudesFromApi = await apiSolicitud();
+            if (Array.isArray(getListaSolicitudesFromApi)) {
+              setListaSolicitudes(getListaSolicitudesFromApi);
+            } else {
+              setError(new Error('La respuesta de la API no es un array válido.'));
+            }
+          } catch (error) {
+            setError(error);
+          }
+        };
+        viewSolicitudesList();
+      }, []);
 
 
   if (error) {
@@ -79,6 +104,28 @@ export const ListaSolicitudess = () => {
           );
         })}
       </div>
+      {listaSolicitudes.map((solicitud) => {
+        return (
+          <div
+            key={solicitud._id}
+            style={{ flex: '0 0 33%', margin: '10px', background: '#f0f0f0', padding: '10px' }}
+          >
+            <h2>ID: {solicitud._id}</h2>
+            <p>Tipo de Sangre: {solicitud.tipoSangre}</p>
+            <p>Banco: {solicitud.banco}</p>
+            <p>Litros: {solicitud.litros}</p>
+            <button className="btn btn-primary" onClick={() => handleOpenModal(solicitud)}>
+                        Donar
+            </button>
+          </div>
+        );
+      })}
+      <AceptarSolicitud
+          solicitud={solicitud}
+          isOpen={showModal}
+          onClose={() => handleCloseModal()}
+      ></AceptarSolicitud>
+    
     </>
   );
 };
