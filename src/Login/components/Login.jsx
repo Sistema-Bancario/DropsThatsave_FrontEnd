@@ -95,6 +95,8 @@ export const Login = () => {
                             >
                                 Iniciar Sesion
                             </Button>
+                            
+    <a href="/Registro"> <p> ¿No tienes Cuenta? Registrate </p></a>
 
 
                         </form>

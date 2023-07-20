@@ -11,6 +11,7 @@ import { ListaSolicitudess } from './Solicitudes/components/ListaSolicitudes';
 import Prueba from './prueba';
 import PruebaUser from './PruebaUser';
 import { CreateBanco } from './Banco/components/AgregarBancos';
+import Registro from './Registro';
 
 const AppRouter = () => {
     return (
@@ -57,6 +58,12 @@ const AppRouter = () => {
                     path="/Login"
                     element={
                         <Login></Login>
+                    }
+                />
+                   <Route
+                    path="/Registro"
+                    element={
+                        <Registro></Registro>
                     }
                 />
 
