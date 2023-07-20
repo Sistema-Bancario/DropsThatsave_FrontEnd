@@ -5,7 +5,7 @@ export const sendData = async (state, option, _id) => {
   let resultado;
   switch (option) {
     case 1:
-      console.log(state.litros); // Deberías poder acceder directamente a state.litros
+      console.log(state.litros); 
       resultado = await aceptarSolicitud({
         idSolicitud: _id,
         litrosDonados: state.litros,
@@ -27,7 +27,6 @@ export const sendData = async (state, option, _id) => {
         });
       }
       break;
-    // Agrega más casos si es necesario
     default:
       break;
   }
