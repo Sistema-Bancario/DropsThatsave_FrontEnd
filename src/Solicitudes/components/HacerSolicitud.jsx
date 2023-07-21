@@ -10,7 +10,7 @@ export const HacerSolicitud = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log("Datos a enviar:", agregar); // Agrega esta línea para ver los datos en la consola
-        sendData(agregar, 1, 0);
+        sendData(agregar, 2, 0);
     };
 
     const tiposDeSangre = [
