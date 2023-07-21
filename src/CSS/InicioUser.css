@@ -1,0 +1,50 @@
+.contenedorcuar {
+  display: flex;
+  justify-content: center;
+}
+
+.boxes {
+  width: 400px;
+  height: 200px;
+  margin: 20px;
+  border-radius: 10px; 
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.contenidocua {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.contenidocua img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px; 
+
+}
+
+.centered-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #000000;
+  font-size: 18px;
+}
+
+.box-link:hover .centered-text {
+  color: #1f5889;
+}
+
+.box-link:hover .content img {
+  opacity: 0.8;
+  filter: brightness(70%); /* Aplicamos el filtro para oscurecer la imagen */
+}
+
+@media (max-width: 600px) {
+  .contenedorcuar {
+    flex-direction: column;
+  }
+}

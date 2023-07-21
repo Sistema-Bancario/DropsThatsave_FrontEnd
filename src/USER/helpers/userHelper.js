@@ -16,13 +16,12 @@ export const sendData = async (state, option, _id) => {
                 direccion: state.userRegistro.direccion,
                 enfermedad: state.userRegistro.enfermedad,
                 img: state.userRegistro.img,
-
             });
             if (resultado) {
                 Swal.fire({
                     icon: "success",
                     title: "Genial!",
-                    text: "Administrador creado!",
+                    text: "Usuario creado!",
                     showConfirmButton: true,
                     confirmButtonText: "Ok",
                 }).then((result) => {

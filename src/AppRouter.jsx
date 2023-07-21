@@ -9,12 +9,12 @@ import { ListaAdmins } from "./ADMIN/components/ListaAdmins"
 import { CreateUserAdmin } from "./ADMIN/components/AgregarAdmin"
 import { ListaSolicitudess } from './Solicitudes/components/ListaSolicitudes';
 import Prueba from './prueba';
-import PruebaUser from './PruebaUser';
 import { CreateBanco } from './Banco/components/AgregarBancos';
 import { HacerSolicitud } from './Solicitudes/components/HacerSolicitud';
 import NavbarUser from './NavbarUser';
 import Fondo from './Fondo';
 import Registro from './USER/components/Registro';
+import InicioUser from './InicioUser';
 
 
 const AppRouter = () => {
@@ -30,26 +30,20 @@ const AppRouter = () => {
                 />
 
                 <Route
-                    path="/pruebaUser"
+                    path="/InicioUser"
                     element={
-                        <PruebaUser></PruebaUser>
-                    }
-                />
-                {/* EJEMPLO PARA USAR AUTHENTICATED */}
-                {/* <Route
-                    path="/URL/:id"
-                    element={
-                        isAuthenticated() ? (
+                        isUserAuthenticated() && isUser() ? (
                             <>
-                                <Navbar />
-                                <NOMBREDECOMPOENTE />
+                                <NavbarUser></NavbarUser>
+                                <InicioUser></InicioUser>
+                                <Fondo></Fondo>
                             </>
                         ) : (
                             <Navigate to="/Login" />
                         )
                     }
-                /> */}
-
+                />
+                
                 {/* HOMEPAGE */}
                 <Route
                     path="/"
@@ -138,7 +132,7 @@ const AppRouter = () => {
                 <Route
                     path="/ListaSolicitudes"
                     element={
-                        isUserAuthenticated() && isUser() && tieneTatuajes() && tieneEnfermedad()  ? (
+                        isUserAuthenticated() && isUser() && tieneTatuajes() && tieneEnfermedad() ? (
                             <>
                                 <NavbarUser></NavbarUser>
                                 <ListaSolicitudess />

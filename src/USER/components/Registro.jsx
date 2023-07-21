@@ -22,8 +22,8 @@ function Registro() {
     nombre: '',
     correo: '',
     password: '',
-    tatuajes: false, // Valor predeterminado para tatuajes
-    enfermedad: false, // Valor predeterminado para enfermedad
+    tatuajes: false, 
+    enfermedad: false,
     tipoSangre: '',
     telefono: '',
     direccion: '',
@@ -48,11 +48,22 @@ function Registro() {
     }));
   };
 
+  const tiposDeSangre = [
+    { _id: { "$oid": "648b73a5e7db30e2e21d5bd4" }, tipo: "A+" },
+    { _id: { "$oid": "648b741be7db30e2e21d5bd5" }, tipo: "A-" },
+    { _id: { "$oid": "648b744ae7db30e2e21d5bd7" }, tipo: "B+" },
+    { _id: { "$oid": "648b745be7db30e2e21d5bd8" }, tipo: "B-" },
+    { _id: { "$oid": "648b746ce7db30e2e21d5bd9" }, tipo: "AB+" },
+    { _id: { "$oid": "648b747ee7db30e2e21d5bda" }, tipo: "AB-" },
+    { _id: { "$oid": "648b748fe7db30e2e21d5bdb" }, tipo: "O+" },
+    { _id: { "$oid": "648b749fe7db30e2e21d5bdc" }, tipo: "O-" },
+  ];
+
   return (
     <>
       <div className="container table-container">
         <br /><br />
-        <Link to="/ListaAdmins"><Button className=''>Regresar</Button></Link>
+        <Link to="/Login"><Button className=''>Regresar</Button></Link>
         <h1 id="create-tarea">Agregar Administrador</h1>
         <form onSubmit={handleSubmit}>
 
@@ -127,10 +138,10 @@ function Registro() {
 
           <div className="form-group">
             <label className="text-black">Tipo de Sangre</label>
-            <input
-              type="text"
+            <select
               className="form-control"
               name="tipoSangre"
+              value={agregar.userRegistro.tipoSangre}
               onChange={(event) =>
                 setAgregar({
                   userRegistro: {
@@ -139,7 +150,14 @@ function Registro() {
                   },
                 })
               }
-            />
+            >
+              <option value="">Seleccione un tipo de sangre</option>
+              {tiposDeSangre.map((tipo) => (
+                <option key={tipo._id.$oid} value={tipo.tipo}>
+                  {tipo.tipo}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group">

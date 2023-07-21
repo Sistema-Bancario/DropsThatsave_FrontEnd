@@ -51,7 +51,7 @@ export const createUser = async ({
     Swal.fire({
       icon: "error",
       title: "Ocurrió un error",
-      text: "no se pudo agregar el Admin",
+      text: "No se pudo agregar Tu perfil",
     });
   }
 };
