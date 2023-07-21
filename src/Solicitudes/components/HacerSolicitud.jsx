@@ -29,7 +29,7 @@ export const HacerSolicitud = () => {
             <div className="container table-container">
                 <br /><br />
                 {tieneTatuajes() && tieneEnfermedad() && (
-                    <Link to="/ListaSolicitudes">
+                    <Link to="/InicioUser">
                         <Button className=''>Regresar</Button>
                     </Link>
                 )}
