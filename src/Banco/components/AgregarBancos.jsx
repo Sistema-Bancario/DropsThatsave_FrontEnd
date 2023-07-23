@@ -14,125 +14,129 @@ export const CreateBanco = () => {
 
     return (
         <>
-            <div className="container table-container">
-                <br /><br />
-                <Link to="/ListaBancos"><Button className=''>Regresar</Button></Link>
-                <h1 id="create-tarea">Agregar Banco</h1>
-                <form onSubmit={handleSubmit}>
+            <div className="lista-admins-container">
 
-                    <div className="form-group">
-                        <label className="text-black">Nombre</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="nombre"
-                            required
-                            onChange={(event) =>
-                                setAgregar({
-                                    banco: {
-                                        ...agregar.banco,
-                                        nombre: event.target.value
-                                    }
-                                })
-                            }
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label className="text-black">Direccion</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="direccion"
-                            onChange={(event) =>
-                                setAgregar({
-                                    banco: {
-                                        ...agregar.banco,
-                                        direccion: event.target.value
-                                    }
-                                })
-                            }
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label className="text-black">Telefono</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="telefono"
-                            onChange={(event) =>
-                                setAgregar({
-                                    banco: {
-                                        ...agregar.banco,
-                                        telefono: event.target.value
-                                    }
-                                })
-                            }
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label className="text-black">Apertura</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="apertura"
-                            onChange={(event) =>
-                                setAgregar({
-                                    banco: {
-                                        ...agregar.banco,
-                                        apertura: event.target.value
-                                    }
-                                })
-                            }
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label className="text-black">Cierre</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="cierre"
-                            required
-                            onChange={(event) =>
-                                setAgregar({
-                                    banco: {
-                                        ...agregar.banco,
-                                        cierre: event.target.value
-                                    }
-                                })
-                            }
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label className="text-black">Imagen</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="img"
-                            required
-                            onChange={(event) =>
-                                setAgregar({
-                                    banco: {
-                                        ...agregar.banco,
-                                        img: event.target.value,
-                                    },
-                                })
-                            }
-                        />
-                    </div>
-
-                    <div className="container text-center">
-                        <button id="btn-enviar" type="submit" className="btn">
-                            Enviar
-                        </button>
-                    </div>
+                <div className="container table-container">
                     <br /><br />
-                </form>
+                    <Link to="/ListaBancos"><Button className=''>Regresar</Button></Link>
+                    <h1 id="create-tarea" className="text-white">Agregar Banco</h1>
+                    <form onSubmit={handleSubmit}>
+
+                        <div className="form-group">
+                            <label className="text-white">Nombre</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="nombre"
+                                required
+                                onChange={(event) =>
+                                    setAgregar({
+                                        banco: {
+                                            ...agregar.banco,
+                                            nombre: event.target.value
+                                        }
+                                    })
+                                }
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label className="text-white">Direccion</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="direccion"
+                                onChange={(event) =>
+                                    setAgregar({
+                                        banco: {
+                                            ...agregar.banco,
+                                            direccion: event.target.value
+                                        }
+                                    })
+                                }
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label className="text-white">Telefono</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="telefono"
+                                onChange={(event) =>
+                                    setAgregar({
+                                        banco: {
+                                            ...agregar.banco,
+                                            telefono: event.target.value
+                                        }
+                                    })
+                                }
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label className="text-white">Apertura</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="apertura"
+                                onChange={(event) =>
+                                    setAgregar({
+                                        banco: {
+                                            ...agregar.banco,
+                                            apertura: event.target.value
+                                        }
+                                    })
+                                }
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label className="text-white">Cierre</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="cierre"
+                                required
+                                onChange={(event) =>
+                                    setAgregar({
+                                        banco: {
+                                            ...agregar.banco,
+                                            cierre: event.target.value
+                                        }
+                                    })
+                                }
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label className="text-white">Imagen</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="img"
+                                required
+                                onChange={(event) =>
+                                    setAgregar({
+                                        banco: {
+                                            ...agregar.banco,
+                                            img: event.target.value,
+                                        },
+                                    })
+                                }
+                            />
+                        </div>
+
+                        <div className="container text-center">
+                            <button id="btn-enviar" type="submit" className="btn text-white">
+                                Enviar
+                            </button>
+                        </div>
+                        <br /><br />
+                    </form>
+                </div>
             </div>
+
         </>
     )
 }

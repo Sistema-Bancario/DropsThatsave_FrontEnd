@@ -63,78 +63,81 @@ export const ListaBancos = () => {
 
     return (
         <>
-            <section id="promo" className="promo ">
-                <div className="container text-center">
-                    <br /><br />
 
-                    <h2 className="title">
-                        BANCOS
-                    </h2>
-                    <p className="intro">Listado de los Bancos</p>
-                    <ul className="meta list-inline">
-                        <li className="list-inline-item"></li>
-                    </ul>
-                </div>
-            </section>
+            <div className="lista-admins-container">
+                <section id="promo" className="promo ">
+                    <div className="container text-center">
+                        <br /><br />
 
-            <div  className="container table-container">
-                <section>
-                    <Link to="/agregarBanco">
-                        <button className="btn btn-secondary" >
-                            Agregar un Banco  
-                        </button>
-                    </Link>
+                        <h2 className="title text-white">
+                            BANCOS
+                        </h2>
+                        <p className="intro text-white">Listado de los Bancos</p>
+                        <ul className="meta list-inline">
+                            <li className="list-inline-item"></li>
+                        </ul>
+                    </div>
                 </section>
-            </div>
 
-
-            <div className="container mt-4 mb-5 table-container">
-                <div className="table-responsive text-center">
-                    <table className="table ml-auto custom-table-margin">
-                        <thead className="thead-dark">
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Dirección</th>
-                                <th scope="col">Teléfono</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {listaBancos.map((banco) => (
-                                <tr key={banco._id}>
-                                    <td>{banco._id}</td>
-                                    <td>{banco.nombre}</td>
-                                    <td>{banco.direccion}</td>
-                                    <td>{banco.telefono}</td>
-                                    <td>{Mayus(banco.estado.toString())}</td>
-                                    <td>
-                                        <button className="btn btn-warning" onClick={() => handleOpenModal(banco)}>Editar</button>
-                                        <button className="btn btn-danger" onClick={() => eliminarBancos(banco._id)}>
-                                            Eliminar
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                <div className="container table-container">
+                    <section>
+                        <Link to="/agregarBanco">
+                            <button className="btn btn-secondary" >
+                                Agregar un Banco
+                            </button>
+                        </Link>
+                    </section>
                 </div>
+
+
+                <div className="container mt-4 mb-5 table-container">
+                    <div className="table-responsive text-center">
+                        <table className="table ml-auto custom-table-margin">
+                            <thead className="thead-dark">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Dirección</th>
+                                    <th scope="col">Teléfono</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {listaBancos.map((banco) => (
+                                    <tr key={banco._id}>
+                                        <td>{banco._id}</td>
+                                        <td>{banco.nombre}</td>
+                                        <td>{banco.direccion}</td>
+                                        <td>{banco.telefono}</td>
+                                        <td>{Mayus(banco.estado.toString())}</td>
+                                        <td>
+                                            <button className="btn btn-warning" onClick={() => handleOpenModal(banco)}>Editar</button>
+                                            <button className="btn btn-danger" onClick={() => eliminarBancos(banco._id)}>
+                                                Eliminar
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <UpdateBanco
+                    bancoEdit={bancos}
+                    isOpen={showModal}
+                    onClose={handleCloseModal}
+                />
+                <Link
+                    aria-current="page"
+                    to="/"
+                    onClick={() => logOut()}
+                >
+                    Cerrar Sesion
+                </Link>
             </div>
-
-
-            <UpdateBanco
-                bancoEdit={bancos}
-                isOpen={showModal}
-                onClose={handleCloseModal}
-            />
-            <Link
-                aria-current="page"
-                to="/"
-                onClick={() => logOut()}
-            >
-                Cerrar Sesion
-            </Link>
         </>
     );
 };

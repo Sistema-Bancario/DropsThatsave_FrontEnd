@@ -8,27 +8,52 @@ import { ListaUsers } from "./USER/components/ListaUsers"
 import { ListaAdmins } from "./ADMIN/components/ListaAdmins"
 import { CreateUserAdmin } from "./ADMIN/components/AgregarAdmin"
 import { ListaSolicitudess } from './Solicitudes/components/ListaSolicitudes';
-import Prueba from './prueba';
 import { CreateBanco } from './Banco/components/AgregarBancos';
 import { HacerSolicitud } from './Solicitudes/components/HacerSolicitud';
 import NavbarUser from './NavbarUser';
 import Fondo from './Fondo';
 import Registro from './USER/components/Registro';
 import InicioUser from './InicioUser';
+import NavbarAdmin from './NavbarAdmin';
+import ParticleBackground from './FondoAdmin';
 
 
 const AppRouter = () => {
     return (
         <BrowserRouter>
             <Routes>
-
+                {/* HOMEPAGE */}
                 <Route
-                    path="/prueba"
+                    path="/"
                     element={
-                        <Prueba></Prueba>
+                        <HomePage />
                     }
                 />
 
+                <Route
+                    path="/fondo"
+                    element={
+                        <ParticleBackground />
+                    }
+                />
+
+                {/* LOGIN */}
+                <Route
+                    path="/Login"
+                    element={
+                        <Login></Login>
+                    }
+                />
+                {/* REGISTRO */}
+                <Route
+                    path="/Registro"
+                    element={
+                        <Registro></Registro>
+                    }
+                />
+
+                {/* UUUSSSUUUAAARRRIIIOOO */}
+                {/* INICIO DE USUARIO */}
                 <Route
                     path="/InicioUser"
                     element={
@@ -43,92 +68,7 @@ const AppRouter = () => {
                         )
                     }
                 />
-                
-                {/* HOMEPAGE */}
-                <Route
-                    path="/"
-                    element={
-                        <HomePage />
-                    }
-                />
-                {/* LOGIN */}
-                <Route
-                    path="/Login"
-                    element={
-                        <Login></Login>
-                    }
-                />
-                <Route
-                    path="/Registro"
-                    element={
-                        <Registro></Registro>
-                    }
-                />
-
-                <Route
-                    path="/ListaBancos"
-                    element={
-                        isUserAuthenticated() && isAdmin() ? (
-                            <>
-                                <ListaBancos />
-                            </>
-                        ) : (
-                            <Navigate to="/Login" />
-                        )
-                    }
-                />
-
-                <Route
-                    path="/agregarBanco"
-                    element={
-                        isUserAuthenticated() ? (
-                            <>
-                                <CreateBanco />
-                            </>
-                        ) : (
-                            <Navigate to="/Login" />
-                        )
-                    }
-                />
-
-                <Route
-                    path="/ListaUsuarios"
-                    element={
-                        isUserAuthenticated() ? (
-                            <>
-                                <ListaUsers />
-                            </>
-                        ) : (
-                            <Navigate to="/Login" />
-                        )
-                    }
-                />
-
-                <Route
-                    path="/ListaAdmins"
-                    element={
-                        isUserAuthenticated() ? (
-                            <>
-                                <ListaAdmins />
-                            </>
-                        ) : (
-                            <Navigate to="/Login" />
-                        )
-                    }
-                />
-
-                <Route
-                    path="/agregarAdmin"
-                    element={
-                        isUserAuthenticated() ? (
-                            <>
-                                <CreateUserAdmin />
-                            </>
-                        ) : (
-                            <Navigate to="/Login" />
-                        )
-                    }
-                />
+                {/* LISTA DE SOLICITUDES */}
                 <Route
                     path="/ListaSolicitudes"
                     element={
@@ -143,7 +83,7 @@ const AppRouter = () => {
                         )
                     }
                 />
-
+                {/* HACER SOLICITUD */}
                 <Route
                     path="/hacerSolicitud"
                     element={
@@ -151,6 +91,88 @@ const AppRouter = () => {
                             <>
                                 <NavbarUser></NavbarUser>
                                 <HacerSolicitud />
+                            </>
+                        ) : (
+                            <Navigate to="/Login" />
+                        )
+                    }
+                />
+
+                {/* AAAADDDMMMIIINNN */}
+
+                {/* LISTA DE BANCOS */}
+                <Route
+                    path="/ListaBancos"
+                    element={
+                        isUserAuthenticated() && isAdmin() ? (
+                            <>
+                                <NavbarAdmin></NavbarAdmin>
+                                <ListaBancos />
+                                <ParticleBackground></ParticleBackground>
+
+                            </>
+                        ) : (
+                            <Navigate to="/Login" />
+                        )
+                    }
+                />
+                {/* AGREGAR BANCO */}
+                <Route
+                    path="/agregarBanco"
+                    element={
+                        isUserAuthenticated() && isAdmin() ? (
+                            <>
+                                <NavbarAdmin></NavbarAdmin>
+                                <CreateBanco />
+                                <ParticleBackground></ParticleBackground>
+
+                            </>
+                        ) : (
+                            <Navigate to="/Login" />
+                        )
+                    }
+                />
+                {/* LISTA DE USUARIOS */}
+                <Route
+                    path="/ListaUsuarios"
+                    element={
+                        isUserAuthenticated() && isAdmin() ? (
+                            <>
+                                <NavbarAdmin></NavbarAdmin>
+                                <ListaUsers />
+                                <ParticleBackground></ParticleBackground>
+
+                            </>
+                        ) : (
+                            <Navigate to="/Login" />
+                        )
+                    }
+                />
+                {/* LISTA DE ADMINISTRADORES */}
+                <Route
+                    path="/ListaAdmins"
+                    element={
+                        isUserAuthenticated() && isAdmin() ? (
+                            <>
+                                <NavbarAdmin></NavbarAdmin>
+                                <ListaAdmins />
+                                <ParticleBackground></ParticleBackground>
+                            </>
+                        ) : (
+                            <Navigate to="/Login" />
+                        )
+                    }
+                />
+                {/* AGREGAR ADMINISTRADOR */}
+                <Route
+                    path="/agregarAdmin"
+                    element={
+                        isUserAuthenticated() && isAdmin() ? (
+                            <>
+                                <NavbarAdmin></NavbarAdmin>
+                                <CreateUserAdmin />
+                                <ParticleBackground></ParticleBackground>
+
                             </>
                         ) : (
                             <Navigate to="/Login" />

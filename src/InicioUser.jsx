@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import "./CSS/InicioUser.css";
-import imagenCuadro1 from "../public/donar.jpg";
-import imagenCuadro2 from "../public/solicitar.jpg";
+import imagenCuadro1 from "./img/donar.jpg";
+import imagenCuadro2 from "./img/solicitar.jpg";
 import { tieneEnfermedad, tieneTatuajes } from './Login/helpers/LoginHelper';
 
 const InicioUser = () => {
@@ -28,7 +28,7 @@ const InicioUser = () => {
             </div>
           </div>
         </Link>
-                )}
+        )}
 
       </div>
     </>

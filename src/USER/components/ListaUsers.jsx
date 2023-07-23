@@ -50,58 +50,62 @@ export const ListaUsers = () => {
 
   return (
     <>
-      <section id="promo" className="promo section offset-header ">
-        <div className="container text-center">
-          <br /><br />
+      <div className="lista-admins-container">
 
-          <h2 className="title">
-            Usuarios
-          </h2>
-          <p className="intro">Listado de los Usuarios</p>
-          <ul className="meta list-inline">
-            <li className="list-inline-item"></li>
-          </ul>
-        </div>
-      </section>
+        <section id="promo" className="promo offset-header ">
+          <div className="container text-center">
+            <br /><br />
 
-      <div className="container mt-4 mb-5 table-container">
-        <div className="table-responsive text-center">
-          <table className="table ml-auto custom-table-margin">
-            <thead className="thead-dark">
-              <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Rol</th>
-                <th scope="col">Sangre</th>
-                <th scope="col">Teléfono</th>
-                <th scope="col">Dirección</th>
-                <th scope="col">Tatuajes</th>
-              </tr>
-            </thead>
-            <tbody>
-              {listaUsers.map((user) => {
-                return (
-                  <tr key={String(user._id)}>
-                    <td>{user.nombre}</td>
-                    <td>{user.correo}</td>
-                    <td>{user.rol}</td>
-                    <td>{user.tipoSangre}</td>
-                    <td>{user.telefono}</td>
-                    <td>{user.direccion}</td>
-                    <td>{user.tatuajes}</td>
-                    <td>
+            <h2 className="title text-white">
+              Usuarios
+            </h2>
+            <p className="intro text-white">Listado de los Usuarios</p>
+            <ul className="meta list-inline">
+              <li className="list-inline-item"></li>
+            </ul>
+          </div>
+        </section>
 
-                      <button className="btn btn-danger" onClick={() => eliminarUsers(user._id)}>
-                        Eliminar
-                      </button>
-                    </td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
+        <div className="container mt-4 mb-5 table-container">
+          <div className="table-responsive text-center">
+            <table className="table ml-auto custom-table-margin">
+              <thead className="thead-dark">
+                <tr>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Correo</th>
+                  <th scope="col">Rol</th>
+                  <th scope="col">Sangre</th>
+                  <th scope="col">Teléfono</th>
+                  <th scope="col">Dirección</th>
+                  <th scope="col">Tatuajes</th>
+                </tr>
+              </thead>
+              <tbody>
+                {listaUsers.map((user) => {
+                  return (
+                    <tr key={String(user._id)}>
+                      <td>{user.nombre}</td>
+                      <td>{user.correo}</td>
+                      <td>{user.rol}</td>
+                      <td>{user.tipoSangre}</td>
+                      <td>{user.telefono}</td>
+                      <td>{user.direccion}</td>
+                      <td>{user.tatuajes}</td>
+                      <td>
+
+                        <button className="btn btn-danger" onClick={() => eliminarUsers(user._id)}>
+                          Eliminar
+                        </button>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
+
     </>
   );
 };
