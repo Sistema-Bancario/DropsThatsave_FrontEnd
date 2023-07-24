@@ -58,7 +58,7 @@ const CustomNavbar = () => {
                                         <span className="drop"></span>
                                     </span>
                                 </Nav.Link>
-                                <Nav.Link href="#contacto">
+                                <Nav.Link href="/contacto">
                                     Contacto
                                     <span className="drop-container">
                                         <span className="drop"></span>

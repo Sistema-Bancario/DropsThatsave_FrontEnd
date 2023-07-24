@@ -70,25 +70,25 @@ export const ListaSolicitudess = () => {
 
   return (
     <>
-    <div class="main-container">
-      <div class="heading">
-        <h1 class="heading__title">Solicitudes</h1>
-        <p class="heading__credits">
-          <a class="heading__link" target="_blank" href="https://dribbble.com/sl">
+    <div className="main-container">
+      <div className="heading">
+        <h1 className="heading__title">Solicitudes</h1>
+        <p className="heading__credits">
+          <a className="heading__link" >
             Dona y ayudas a las personas
           </a>
         </p>
       </div>
-      <div class="cards">
+      <div className="cards">
         {listaSolicitudes.map((solicitud) => {
           return (
             <div
               key={solicitud._id}
-              class={`card card-${solicitud._id % 5 + 1}`}
+              className={`card card-${solicitud._id % 5 + 1}`}
             >
-              <div class="card__icon"><i class="fas fa-bolt"></i></div>
-              <p class="card__exit"><i class="fas fa-times"></i></p>
-              <h2 class="card__title">Solicitante: {solicitud.usuarioSolicitante.nombre}</h2>
+              <div className="card__icon"><i className="fas fa-bolt"></i></div>
+              <p className="card__exit"><i className="fas fa-times"></i></p>
+              <h2 className="card__title">Solicitante: {solicitud.usuarioSolicitante.nombre}</h2>
               <p>Tipo de Sangre: {solicitud.tipoSangre}</p>
               <p>Banco: {solicitud.banco.nombre}</p>
               <p>Solicita {solicitud.litros} Litros</p>

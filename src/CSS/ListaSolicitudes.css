@@ -91,9 +91,11 @@ body {
   }
   
   .card__title {
-    grid-row: 3/4;
+    /* grid-row: 3/4; */
     font-weight: 400;
     color: #bc2828;
+    text-align: center;
+
   }
   
   .card__apply {

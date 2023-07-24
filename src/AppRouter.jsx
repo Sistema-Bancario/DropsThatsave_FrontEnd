@@ -16,6 +16,7 @@ import InicioUser from './InicioUser';
 import NavbarAdmin from './NavbarAdmin';
 import ParticleBackground from './FondoAdmin';
 import HacerSolicitud from './Solicitudes/components/HacerSolicitud';
+import { ContactoForm } from './ContactoForm';
 
 
 const AppRouter = () => {
@@ -68,6 +69,7 @@ const AppRouter = () => {
                         )
                     }
                 />
+                
                 {/* LISTA DE SOLICITUDES */}
                 <Route
                     path="/ListaSolicitudes"
@@ -99,7 +101,22 @@ const AppRouter = () => {
                     }
                 />
 
-                {/* AAAADDDMMMIIINNN */}
+                <Route
+                    path="/contacto"
+                    element={
+                         isUser() ? (
+                            <>
+                                <NavbarUser></NavbarUser>
+                                <ContactoForm />
+                                <Fondo></Fondo>
+                            </>
+                        ) : (
+                            <Navigate to="/Login" />
+                        )
+                    }
+                />
+
+                                                     {/* AAAADDDMMMIIINNN */}
 
                 {/* LISTA DE BANCOS */}
                 <Route
