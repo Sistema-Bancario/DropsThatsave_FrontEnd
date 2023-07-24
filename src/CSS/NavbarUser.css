@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
 
 .custom-navbar {
-  background: rgb(0, 0, 0);
+  background: rgb(255, 255, 255);
   padding: 20px;
 }
 
@@ -24,7 +24,7 @@
   font-size: 18px;
   position: relative;
   margin-right: 30px;
-  color: #ffffff;
+  color: #000000;
 }
 
 .custom-navbar .navbar-nav .nav-link:hover,

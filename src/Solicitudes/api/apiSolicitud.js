@@ -44,13 +44,9 @@ export const aceptarSolicitud = async ({
   idSolicitud,
   litrosDonados,
   enfermedad
-  
 }) => {
  
   try {
-    console.log(idSolicitud)
-    console.log(litrosDonados)
-    console.log(enfermedad)
     const response = await axios.post(
       `http://localhost:8080/api/donaciones/aceptar`,
       {

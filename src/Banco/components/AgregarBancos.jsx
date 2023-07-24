@@ -46,6 +46,7 @@ export const CreateBanco = () => {
                                 type="text"
                                 className="form-control"
                                 name="direccion"
+                                required
                                 onChange={(event) =>
                                     setAgregar({
                                         banco: {
@@ -63,6 +64,9 @@ export const CreateBanco = () => {
                                 type="text"
                                 className="form-control"
                                 name="telefono"
+                                required
+                                pattern="[0-9]{8}"
+                                title="El número de celular debe tener 8 dígitos numéricos"
                                 onChange={(event) =>
                                     setAgregar({
                                         banco: {

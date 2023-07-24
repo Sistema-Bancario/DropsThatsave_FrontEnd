@@ -9,13 +9,13 @@ import { ListaAdmins } from "./ADMIN/components/ListaAdmins"
 import { CreateUserAdmin } from "./ADMIN/components/AgregarAdmin"
 import { ListaSolicitudess } from './Solicitudes/components/ListaSolicitudes';
 import { CreateBanco } from './Banco/components/AgregarBancos';
-import { HacerSolicitud } from './Solicitudes/components/HacerSolicitud';
 import NavbarUser from './NavbarUser';
 import Fondo from './Fondo';
 import Registro from './USER/components/Registro';
 import InicioUser from './InicioUser';
 import NavbarAdmin from './NavbarAdmin';
 import ParticleBackground from './FondoAdmin';
+import HacerSolicitud from './Solicitudes/components/HacerSolicitud';
 
 
 const AppRouter = () => {
@@ -91,6 +91,7 @@ const AppRouter = () => {
                             <>
                                 <NavbarUser></NavbarUser>
                                 <HacerSolicitud />
+                                <Fondo></Fondo>
                             </>
                         ) : (
                             <Navigate to="/Login" />

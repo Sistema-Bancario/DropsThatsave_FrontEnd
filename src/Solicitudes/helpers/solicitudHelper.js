@@ -1,4 +1,4 @@
-import { aceptarSolicitud } from "../api/apiSolicitud";
+import { aceptarSolicitud, createSolicitud } from "../api/apiSolicitud";
 import Swal from "sweetalert2";
 
 export const sendData = async (state, option, _id) => {
@@ -15,7 +15,7 @@ export const sendData = async (state, option, _id) => {
         Swal.fire({
           icon: "success",
           title: "Genial!",
-          text: "donación Hecha!",
+          text: "Donación Hecha!",
           showConfirmButton: true,
           confirmButtonText: "Ok",
         }).then((result) => {
@@ -38,7 +38,7 @@ export const sendData = async (state, option, _id) => {
         Swal.fire({
           icon: "success",
           title: "¡Genial!",
-          text: "Banco creado exitosamente",
+          text: "Solicitud creada exitosamente",
           showConfirmButton: true,
           confirmButtonText: "Ok"
         }).then((result) => {

@@ -27,6 +27,7 @@ export const CreateUserAdmin = () => {
                                 type="text"
                                 className="form-control"
                                 name="nombre"
+                                required
                                 onChange={(event) =>
                                     setAgregar({
                                         user: {
@@ -41,9 +42,11 @@ export const CreateUserAdmin = () => {
                         <div className="form-group">
                             <label className="text-white">Correo</label>
                             <input
-                                type="text"
+                                type="email"
                                 className="form-control"
-                                name="correo"
+                                id="inemail"
+                                aria-describedby="emailHelp"
+                                required
                                 onChange={(event) =>
                                     setAgregar({
                                         user: {
@@ -71,24 +74,6 @@ export const CreateUserAdmin = () => {
                                 }
                             ></input>
                         </div>
-
-                        <div className="form-group">
-                            <label className="text-white">rol *Admin*</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="rol"
-                                onChange={(event) =>
-                                    setAgregar({
-                                        user: {
-                                            ...agregar.user,
-                                            rol: event.target.value,
-                                        },
-                                    })
-                                }
-                            ></input>
-                        </div>
-
 
                         <div className="container text-center">
                             <button id="btn-enviar" type="submit" className="btn text-white">

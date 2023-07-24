@@ -1,15 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom'
 import { Button } from "react-bootstrap";
 import { solicitude } from "../model/solicitud";
 import { sendData } from "../helpers/solicitudHelper";
 import { tieneEnfermedad, tieneTatuajes } from "../../Login/helpers/LoginHelper";
+import { apiBancos } from "../../Banco/api/apiBancos";
+import "../../CSS/Downs.css";
 
-export const HacerSolicitud = () => {
-    const [agregar, setAgregar] = useState(solicitude);
+const HacerSolicitud = () => {
+    const [listaBancos, setListaBancos] = useState([]);
+
+    const viewBancosList = async () => {
+        const getListaBancoFromApi = await apiBancos();
+        setListaBancos(getListaBancoFromApi);
+    };
+
+    useEffect(() => {
+        viewBancosList();
+    }, []);
+
+    const [agregar, setAgregar] = useState({
+        solicitude: {
+            tipoSangre: "", // Establece el valor inicial a una cadena vacía
+            banco: "",
+            litros: 0,
+        },
+    });
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("Datos a enviar:", agregar); // Agrega esta línea para ver los datos en la consola
+        console.log("Datos a enviar:", agregar);
         sendData(agregar, 2, 0);
     };
 
@@ -36,16 +55,20 @@ export const HacerSolicitud = () => {
 
                 <form onSubmit={handleSubmit}>
 
-                <div className="form-group">
+                    <div className="form-group">
                         <label className="text-black">Tipo de Sangre</label>
                         <select
                             className="form-control"
                             name="tipoSangre"
-                            value={agregar.tipoSangre}
+                            required
+                            value={agregar.solicitude.tipoSangre} 
                             onChange={(event) =>
                                 setAgregar({
                                     ...agregar,
-                                    tipoSangre: event.target.value,
+                                    solicitude: { 
+                                        ...agregar.solicitude,
+                                        tipoSangre: event.target.value,
+                                    },
                                 })
                             }
                         >
@@ -60,10 +83,11 @@ export const HacerSolicitud = () => {
 
                     <div className="form-group">
                         <label className="text-black">Banco</label>
-                        <input
+                        <select
                             type="text"
                             className="form-control"
                             name="banco"
+                            required
                             onChange={(event) =>
                                 setAgregar({
                                     solicitude: {
@@ -72,7 +96,14 @@ export const HacerSolicitud = () => {
                                     },
                                 })
                             }
-                        ></input>
+                        >
+                            <option value="">Selecciona una cuenta</option>
+                            {listaBancos.map((banco) => (
+                                <option key={banco._id} value={banco._id}>
+                                    {`${banco.nombre} - ${banco.direccion} `}
+                                </option>
+                            ))}
+                        </select>
                     </div>
 
                     <div className="form-group">
@@ -81,6 +112,8 @@ export const HacerSolicitud = () => {
                             type="number"
                             className="form-control"
                             name="litros"
+                            min="0" 
+                            required
                             onChange={(event) =>
                                 setAgregar({
                                     solicitude: {

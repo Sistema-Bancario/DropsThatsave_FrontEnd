@@ -3,9 +3,10 @@
     width: 100%;
   }
 
-  .table-container {
-    padding: 20px;
-  }
+.table-container {
+  overflow-x: auto;
+}
+
   
   .data-table th,
   .data-table td {

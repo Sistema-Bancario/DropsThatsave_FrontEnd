@@ -3,8 +3,9 @@ import Swal from "sweetalert2";
 import { solicitude } from "../model/solicitud";
 import { apiSolicitud } from "../api/apiSolicitud";
 import { Link } from 'react-router-dom'
-
 import { AceptarSolicitud } from "./AceptarSolicitud";
+import "../../CSS/ListaSolicitudes.css";
+
 
 
 export const ListaSolicitudess = () => {
@@ -44,6 +45,7 @@ export const ListaSolicitudess = () => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
+  
     useEffect(() => {
         const viewSolicitudesList = async () => {
           try {
@@ -68,64 +70,42 @@ export const ListaSolicitudess = () => {
 
   return (
     <>
-      <section id="promo" className="">
-        <div className="container text-center">
-          <br /><br />
-
-          <h2 className="title">
-            Solicitudes
-          </h2>  
-        </div>
-      </section>
-   
-      <div className="container table-container">
-        <section>
-          <Link to="/hacerSolicitud">
-            <button className="btn btn-secondary" >
-              Hacer una Solicitud
-            </button>
-          </Link>
-        </section>
+    <div class="main-container">
+      <div class="heading">
+        <h1 class="heading__title">Solicitudes</h1>
+        <p class="heading__credits">
+          <a class="heading__link" target="_blank" href="https://dribbble.com/sl">
+            Dona y ayudas a las personas
+          </a>
+        </p>
       </div>
-
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+      <div class="cards">
         {listaSolicitudes.map((solicitud) => {
           return (
             <div
               key={solicitud._id}
-              style={{ flex: '0 0 33%', margin: '10px', background: '#f0f0f0', padding: '10px' }}
+              class={`card card-${solicitud._id % 5 + 1}`}
             >
-              <h2>ID: {solicitud._id}</h2>
+              <div class="card__icon"><i class="fas fa-bolt"></i></div>
+              <p class="card__exit"><i class="fas fa-times"></i></p>
+              <h2 class="card__title">Solicitante: {solicitud.usuarioSolicitante.nombre}</h2>
               <p>Tipo de Sangre: {solicitud.tipoSangre}</p>
-              <p>Banco: {solicitud.banco}</p>
-              <p>Litros: {solicitud.litros}</p>
-              <button className="btn btn-primary">Aceptar</button>
+              <p>Banco: {solicitud.banco.nombre}</p>
+              <p>Solicita {solicitud.litros} Litros</p>
+              <button className="btn btn-primary" onClick={() => handleOpenModal(solicitud)}>
+                Donar
+              </button>
             </div>
           );
         })}
       </div>
-      {listaSolicitudes.map((solicitud) => {
-        return (
-          <div
-            key={solicitud._id}
-            style={{ flex: '0 0 33%', margin: '10px', background: '#f0f0f0', padding: '10px' }}
-          >
-            <h2>ID: {solicitud._id}</h2>
-            <p>Tipo de Sangre: {solicitud.tipoSangre}</p>
-            <p>Banco: {solicitud.banco}</p>
-            <p>Litros: {solicitud.litros}</p>
-            <button className="btn btn-primary" onClick={() => handleOpenModal(solicitud)}>
-                        Donar
-            </button>
-          </div>
-        );
-      })}
-      <AceptarSolicitud
-          solicitud={solicitud}
-          isOpen={showModal}
-          onClose={() => handleCloseModal()}
-      ></AceptarSolicitud>
+    </div>
     
-    </>
-  );
+    <AceptarSolicitud
+      solicitud={solicitud}
+      isOpen={showModal}
+      onClose={() => handleCloseModal()}
+    ></AceptarSolicitud >
+  </>
+);
 };

@@ -18,11 +18,6 @@ export const ListaBancos = () => {
         setListaBancos(getListaBancoFromApi);
     };
 
-    const logOut = () => {
-        localStorage.removeItem("token");
-        window.location.href = "/Login";
-    };
-
     useEffect(() => {
         viewBancosList();
     }, []);
@@ -130,13 +125,6 @@ export const ListaBancos = () => {
                     isOpen={showModal}
                     onClose={handleCloseModal}
                 />
-                <Link
-                    aria-current="page"
-                    to="/"
-                    onClick={() => logOut()}
-                >
-                    Cerrar Sesion
-                </Link>
             </div>
         </>
     );

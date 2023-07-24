@@ -20,7 +20,7 @@ export const AceptarSolicitud = ({ isOpen, onClose, solicitud }) => {
               solicitud={solicitud}
               option={1}
               id={id} // Asegúrate de que el valor de 'id' sea correcto
-              
+
             />
 
           </Modal.Body>
