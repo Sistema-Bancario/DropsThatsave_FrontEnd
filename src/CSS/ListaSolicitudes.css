@@ -132,3 +132,9 @@ body {
       justify-content: center;
     }
   }
+
+  /* TABLA DE ADMIN */
+  .table-container{
+    width: 70%;
+    margin-left: 15%;
+  }

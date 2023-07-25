@@ -14,6 +14,30 @@ export const apiUser = async () => {
   }
 };
 
+
+export const apiMiPerfil = async () => {
+  try {
+    const listaUsers = await axios.get(`${URL}miPerfil`,
+      { headers: { "x-token": token } });
+      console.log(listaUsers.data);
+    return listaUsers.data.usuario;
+  } catch ({ response: { data } }) {
+    return data.msg;
+  }
+};
+
+export const apiEditUser = async (editUser) => {
+  console.log(editUser);
+  try {
+    const listaUsers = await axios.put(`${URL}editarMiPerfil`, {editUser},
+      { headers: { "x-token": token } });
+      console.log(listaUsers.data);
+    return true;
+  } catch ({ response: { data } }) {
+    return false;
+  }
+};
+
 export const createUser = async ({
   nombre,
   correo,
