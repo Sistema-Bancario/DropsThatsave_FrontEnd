@@ -12,6 +12,7 @@ import {
   MDBCheckbox
 } from 'mdb-react-ui-kit';
 import { useState } from 'react';
+import { IoIosArrowBack } from 'react-icons/io'
 import { userRegistro } from '../model/usuarioRegistro';
 import { Link } from 'react-router-dom';
 import { Button } from "react-bootstrap";
@@ -22,7 +23,7 @@ function Registro() {
     nombre: '',
     correo: '',
     password: '',
-    tatuajes: false, 
+    tatuajes: false,
     enfermedad: false,
     tipoSangre: '',
     telefono: '',
@@ -61,164 +62,183 @@ function Registro() {
 
   return (
     <>
-      <div className="container table-container">
-        <br /><br />
-        <Link to="/Login"><Button className=''>Regresar</Button></Link>
-        <h1 id="create-tarea">Agregar Administrador</h1>
-        <form onSubmit={handleSubmit}>
+      <MDBContainer className="container table-container "
+        style={{ paddingTop: '2rem' }}
+      >
+        <div
+          style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+        >
+          <Link to="/Login">
 
-          <div className="form-group">
-            <label className="text-black">Nombre</label>
-            <input
-              type="text"
-              className="form-control"
-              name="nombre"
-              onChange={(event) =>
-                setAgregar({
-                  userRegistro: {
-                    ...agregar.userRegistro,
-                    nombre: event.target.value,
-                  },
-                })
-              }
-            />
-          </div>
+            <IoIosArrowBack size={50} style={{ color: 'black' }} />
 
-          <div className="form-group">
-            <label className="text-black">Correo</label>
-            <input
-              type="text"
-              className="form-control"
-              name="correo"
-              onChange={(event) =>
-                setAgregar({
-                  userRegistro: {
-                    ...agregar.userRegistro,
-                    correo: event.target.value,
-                  },
-                })
-              }
-            />
-          </div>
+          </Link>
+          <h1 id="create-tarea">Agregar Administrador</h1>
+        </div>
+        <MDBContainer>
+          <form onSubmit={handleSubmit}>
 
-          <div className="form-group">
-            <label className="text-black">Password</label>
-            <input
-              type="text"
-              className="form-control"
-              name="password"
-              onChange={(event) =>
-                setAgregar({
-                  userRegistro: {
-                    ...agregar.userRegistro,
-                    password: event.target.value,
-                  },
-                })
-              }
-            />
-          </div>
+            <div className="form-group">
+              <label className="text-black">Nombre</label>
+              <input
+                type="text"
+                className="form-control"
+                name="nombre"
+                onChange={(event) =>
+                  setAgregar({
+                    userRegistro: {
+                      ...agregar.userRegistro,
+                      nombre: event.target.value,
+                    },
+                  })
+                }
+              />
+            </div>
 
-          <div className="form-group">
-            <label className="text-black">Tatuajes</label>
-            <MDBCheckbox
-              label="¿Tiene tatuajes?"
-              checked={agregar.userRegistro.tatuajes} // Add checked prop
-              onChange={(event) => handleCheckboxChange(event, "tatuajes")} // Call the new function
-            />
-          </div>
+            <div className="form-group">
+              <label className="text-black">Correo</label>
+              <input
+                type="text"
+                className="form-control"
+                name="correo"
+                onChange={(event) =>
+                  setAgregar({
+                    userRegistro: {
+                      ...agregar.userRegistro,
+                      correo: event.target.value,
+                    },
+                  })
+                }
+              />
+            </div>
 
-          <div className="form-group">
-            <label className="text-black">Enfermedades</label>
-            <MDBCheckbox
-              label="¿Tiene enfermedades?"
-              checked={agregar.userRegistro.enfermedad} // Add checked prop
-              onChange={(event) => handleCheckboxChange(event, "enfermedad")} // Call the new function
-            />
-          </div>
+            <div className="form-group">
+              <label className="text-black">Password</label>
+              <input
+                type="text"
+                className="form-control"
+                name="password"
+                onChange={(event) =>
+                  setAgregar({
+                    userRegistro: {
+                      ...agregar.userRegistro,
+                      password: event.target.value,
+                    },
+                  })
+                }
+              />
+            </div>
 
-          <div className="form-group">
-            <label className="text-black">Tipo de Sangre</label>
-            <select
-              className="form-control"
-              name="tipoSangre"
-              value={agregar.userRegistro.tipoSangre}
-              onChange={(event) =>
-                setAgregar({
-                  userRegistro: {
-                    ...agregar.userRegistro,
-                    tipoSangre: event.target.value,
-                  },
-                })
-              }
+            <div
+              style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '10px' }}
             >
-              <option value="">Seleccione un tipo de sangre</option>
-              {tiposDeSangre.map((tipo) => (
-                <option key={tipo._id.$oid} value={tipo.tipo}>
-                  {tipo.tipo}
-                </option>
-              ))}
-            </select>
-          </div>
+              <div className="form-group">
+                <label className="text-black">Tatuajes</label>
+                <MDBCheckbox
+                  style={{ borderRadius: '100%', height: '20px', width: '20px' }}
+                  label="¿Tiene tatuajes?"
+                  checked={agregar.userRegistro.tatuajes} // Add checked prop
+                  onChange={(event) => handleCheckboxChange(event, "tatuajes")} // Call the new function
+                />
+              </div>
 
-          <div className="form-group">
-            <label className="text-black">Teléfono</label>
-            <input
-              type="text"
-              className="form-control"
-              name="telefono"
-              onChange={(event) =>
-                setAgregar({
-                  userRegistro: {
-                    ...agregar.userRegistro,
-                    telefono: event.target.value,
-                  },
-                })
-              }
-            />
-          </div>
+              <div className="form-group">
+                <label className="text-black">Enfermedades</label>
+                <MDBCheckbox
+                  style={{ borderRadius: '100%', height: '20px', width: '20px' }}
+                  label="¿Tiene enfermedades?"
+                  checked={agregar.userRegistro.enfermedad} // Add checked prop
+                  onChange={(event) => handleCheckboxChange(event, "enfermedad")} // Call the new function
+                />
+              </div>
+            </div>
 
-          <div className="form-group">
-            <label className="text-black">Dirección</label>
-            <input
-              type="text"
-              className="form-control"
-              name="direccion"
-              onChange={(event) =>
-                setAgregar({
-                  userRegistro: {
-                    ...agregar.userRegistro,
-                    direccion: event.target.value,
-                  },
-                })
-              }
-            />
-          </div>
 
-          <div className="form-group">
-            <label className="text-black">Imagen</label>
-            <input
-              type="text"
-              className="form-control"
-              name="img"
-              onChange={(event) =>
-                setAgregar({
-                  userRegistro: {
-                    ...agregar.userRegistro,
-                    img: event.target.value,
-                  },
-                })
-              }
-            />
-          </div>
+            <div className="form-group">
+              <label className="text-black">Tipo de Sangre</label>
+              <select
+                className="form-control"
+                name="tipoSangre"
+                value={agregar.userRegistro.tipoSangre}
+                onChange={(event) =>
+                  setAgregar({
+                    userRegistro: {
+                      ...agregar.userRegistro,
+                      tipoSangre: event.target.value,
+                    },
+                  })
+                }
+              >
+                <option value="">Seleccione un tipo de sangre</option>
+                {tiposDeSangre.map((tipo) => (
+                  <option key={tipo._id.$oid} value={tipo.tipo}>
+                    {tipo.tipo}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-          <div className="container text-center">
-            <button id="btn-enviar" type="submit" className="btn">
-              Enviar
-            </button>
-          </div>
-          <br /><br />
-        </form>
-      </div>
+            <div className="form-group">
+              <label className="text-black">Teléfono</label>
+              <input
+                type="text"
+                className="form-control"
+                name="telefono"
+                onChange={(event) =>
+                  setAgregar({
+                    userRegistro: {
+                      ...agregar.userRegistro,
+                      telefono: event.target.value,
+                    },
+                  })
+                }
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="text-black">Dirección</label>
+              <input
+                type="text"
+                className="form-control"
+                name="direccion"
+                onChange={(event) =>
+                  setAgregar({
+                    userRegistro: {
+                      ...agregar.userRegistro,
+                      direccion: event.target.value,
+                    },
+                  })
+                }
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="text-black">Imagen</label>
+              <input
+                type="text"
+                className="form-control"
+                name="img"
+                onChange={(event) =>
+                  setAgregar({
+                    userRegistro: {
+                      ...agregar.userRegistro,
+                      img: event.target.value,
+                    },
+                  })
+                }
+              />
+            </div>
+
+            <div className="container text-center">
+              <button id="btn-enviar" type="submit" className="btn btn-primary w-100">
+                Enviar
+              </button>
+            </div>
+            <br /><br />
+          </form>
+        </MDBContainer>
+
+      </MDBContainer >
     </>
   );
 }

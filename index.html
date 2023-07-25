@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,11 +8,28 @@
   <link rel="icon" type="image/svg+xml" href="/Logo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DROPS THAT SAVE</title>
- 
 </head>
 
+
+
 <body>
-  <div id="root"></div>
+
+  <style>
+    body {
+      min-height: 100vh;
+      top: 0;
+      padding: 0;
+      margin: 0
+    }
+
+    .parent-root-container {
+      min-height: 100vh;
+      top: 0;
+      padding: 0;
+      margin: 0
+    }
+  </style>
+  <div id="root" class="parent-root-container"></div>
   <script type="module" src="/src/main.jsx"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
@@ -175,7 +194,7 @@
       }
       function update() {
 
-        if (isNaN(mouse.delta) || mouse.delta <= 0) { return; }
+        if (isNaN(mouse.delta) || mouse.delta <= 0) {return;}
 
         var distX = mouse.x - (mouse.rx),
           distY = mouse.y - (mouse.ry);
@@ -188,11 +207,13 @@
         }
       };
     });
-  
-  
+
+
   </script>
 
- 
+
 
 
 </body>
+
+</html>
