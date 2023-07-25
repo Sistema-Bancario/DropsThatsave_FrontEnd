@@ -16,7 +16,12 @@ import InicioUser from './InicioUser';
 import NavbarAdmin from './NavbarAdmin';
 import ParticleBackground from './FondoAdmin';
 import HacerSolicitud from './Solicitudes/components/HacerSolicitud';
+<<<<<<< Updated upstream
 import { ContactoForm } from './ContactoForm';
+=======
+import { ListaSolicitudesAdmin } from './SolicitudesAdmin/components/ListaSolicitudes';
+import { MiPerfil } from './USER/components/MiUser';
+>>>>>>> Stashed changes
 
 
 const AppRouter = () => {
@@ -69,7 +74,25 @@ const AppRouter = () => {
                         )
                     }
                 />
+<<<<<<< Updated upstream
                 
+=======
+                {/* MI PERFIL */}
+                <Route
+                    path="/miPerfil"
+                    element={
+                        isUserAuthenticated() && isUser() ? (
+                            <>
+                                <NavbarUser></NavbarUser>
+                                <MiPerfil></MiPerfil>
+                                <Fondo></Fondo>
+                            </>
+                        ) : (
+                            <Navigate to="/Login" />
+                        )
+                    }
+                />
+>>>>>>> Stashed changes
                 {/* LISTA DE SOLICITUDES */}
                 <Route
                     path="/ListaSolicitudes"
@@ -189,6 +212,22 @@ const AppRouter = () => {
                             <>
                                 <NavbarAdmin></NavbarAdmin>
                                 <CreateUserAdmin />
+                                <ParticleBackground></ParticleBackground>
+
+                            </>
+                        ) : (
+                            <Navigate to="/Login" />
+                        )
+                    }
+                />
+                {/* RUTAS DE SOLICITUDES */}
+                <Route
+                    path="/listaSolicitudesAdmin"
+                    element={
+                        isUserAuthenticated() && isAdmin() ? (
+                            <>
+                                <NavbarAdmin></NavbarAdmin>
+                                <ListaSolicitudesAdmin />
                                 <ParticleBackground></ParticleBackground>
 
                             </>

@@ -73,7 +73,9 @@ const CustomNavbar = () => {
                                 <Image src="https://st1.uvnimg.com/98/f4/9b4500ef4da7a3129b32c906df97/lionel-messi.jpeg" roundedCircle width="60" height="60" />
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item>Ver Mi Perfil</Dropdown.Item>
+                                <Dropdown.Item>
+                                    <Link to="/miPerfil">Ver Mi Perfil</Link>
+                                </Dropdown.Item>
                                 <Dropdown.Divider />
                                 <Dropdown.Item>
                                     <Link

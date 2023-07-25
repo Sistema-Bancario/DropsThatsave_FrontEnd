@@ -17,7 +17,7 @@ const NavbarAdmin = () => {
                 <ul className="sidebar-nav">
                     <li><Link to="/agregarBanco">Crear Banco</Link></li>
                     <li><Link to="/ListaBancos">Ver Bancos</Link></li>
-                    <li><Link to="#">Solicitudes</Link></li>
+                    <li><Link to="/listaSolicitudesAdmin">Solicitudes</Link></li>
                     <li><Link to="/ListaUsuarios">Usuarios</Link></li>
                     <li><Link to="/ListaAdmins">Administradores</Link></li>
                     <li><Link to="/agregarAdmin">Agregar Administrador</Link></li>
