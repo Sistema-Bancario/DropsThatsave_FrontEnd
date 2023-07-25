@@ -19,6 +19,8 @@ import HacerSolicitud from './Solicitudes/components/HacerSolicitud';
 import { ContactoForm } from './ContactoForm';
 import { ListaSolicitudesAdmin } from './SolicitudesAdmin/components/ListaSolicitudes';
 import { MiPerfil } from './USER/components/MiUser';
+import { CreateCita } from './Cita/components/AgregarCita';
+import { MisCitas } from './Cita/components/VerMisCitas';
 
 
 const AppRouter = () => {
@@ -102,6 +104,37 @@ const AppRouter = () => {
                         )
                     }
                 />
+
+                <Route
+                    path="/hacerCita"
+                    element={
+                        isUserAuthenticated() && isUser() ? (
+                            <>
+                                <NavbarUser></NavbarUser>
+                                <CreateCita />
+                                <Fondo></Fondo>
+                            </>
+                        ) : (
+                            <Navigate to="/Login" />
+                        )
+                    }
+                />
+
+                <Route
+                    path="/MisCitas"
+                    element={
+                        isUserAuthenticated() && isUser() ? (
+                            <>
+                                <NavbarUser></NavbarUser>
+                                <MisCitas />
+                                <Fondo></Fondo>
+                            </>
+                        ) : (
+                            <Navigate to="/Login" />
+                        )
+                    }
+                />
+
                 {/* HACER SOLICITUD */}
                 <Route
                     path="/hacerSolicitud"
@@ -121,7 +154,7 @@ const AppRouter = () => {
                 <Route
                     path="/contacto"
                     element={
-                         isUser() ? (
+                        isUser() ? (
                             <>
                                 <NavbarUser></NavbarUser>
                                 <ContactoForm />
@@ -133,7 +166,7 @@ const AppRouter = () => {
                     }
                 />
 
-                                                     {/* AAAADDDMMMIIINNN */}
+                {/* AAAADDDMMMIIINNN */}
 
                 {/* LISTA DE BANCOS */}
                 <Route

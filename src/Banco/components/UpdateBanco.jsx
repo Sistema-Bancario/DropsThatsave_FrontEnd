@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
 import { FormBanco } from './FormBanco';
-import '../../CSS/UpdateModal.css'; // Archivo CSS personalizado para estilos del modal
+import '../../CSS/UpdateModal.css';
 
 export const UpdateBanco = ({ isOpen, onClose, bancoEdit }) => {
   if (!isOpen) {

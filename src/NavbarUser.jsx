@@ -60,7 +60,7 @@ const CustomNavbar = () => {
                                     <span className="drop"></span>
                                 </span>
                             </Nav.Link>
-                            <Nav.Link href="#sobre-nosotros">
+                            <Nav.Link href="/MisCitas">
                                 Sobre Nosotros
                                 <span className="drop-container">
                                     <span className="drop"></span>
