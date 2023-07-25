@@ -19,7 +19,6 @@ export const apiMiPerfil = async () => {
   try {
     const listaUsers = await axios.get(`${URL}miPerfil`,
       { headers: { "x-token": token } });
-      console.log(listaUsers.data);
     return listaUsers.data.usuario;
   } catch ({ response: { data } }) {
     return data.msg;

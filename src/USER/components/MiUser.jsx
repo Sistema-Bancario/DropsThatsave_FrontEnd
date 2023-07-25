@@ -40,192 +40,195 @@ export const MiPerfil = () => {
     setShowEditModal(false);
   };
 
-  const handleEditProfile = async() => {
+  const handleEditProfile = async () => {
     const editProfile = await apiEditUser(editedUsuario);
-    if(editProfile){
-        const confirmacion = await Swal.fire({
-            icon: "success",
-            title: 'SE HA MODIFICADO TU USUARIO'
-        })
-        if(confirmacion.isConfirmed){
-            window.location.reload();
-        } else{
-            window.location.reload();
-        }
-    }else{
-        Swal.fire({
-            icon: "error",
-            title: 'ERROR AL MODIFICAR'
-        })
+    if (editProfile) {
+      const confirmacion = await Swal.fire({
+        icon: "success",
+        title: 'SE HA MODIFICADO TU USUARIO'
+      })
+      if (confirmacion.isConfirmed) {
+        window.location.reload();
+      } else {
+        window.location.reload();
+      }
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: 'ERROR AL MODIFICAR'
+      })
     }
     setShowEditModal(false);
   };
 
-  const eliminarSolicitud = async(solicitud)=>{
+  const eliminarSolicitud = async (solicitud) => {
     const confirmacion = await Swal.fire({
-        title: "¿Estás seguro?",
-        text: "Esta acción eliminará la solicitud permanentemente.",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Sí",
-        cancelButtonText: "No",
-      });
-  
-      if (confirmacion.isConfirmed) {
-        let result = await eliminarSolicitudApi(solicitud._id);
-        if (result) {
-          const confirma = await Swal.fire({
-            icon: "success",
-            title: "Genial!",
-            text: "Se eliminó la solicitud correctamente!",
-          });
-          if(confirma.isConfirmed){
+      title: "¿Estás seguro?",
+      text: "Esta acción eliminará la solicitud permanentemente.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí",
+      cancelButtonText: "No",
+    });
+
+    if (confirmacion.isConfirmed) {
+      let result = await eliminarSolicitudApi(solicitud._id);
+      if (result) {
+        const confirma = await Swal.fire({
+          icon: "success",
+          title: "Genial!",
+          text: "Se eliminó la solicitud correctamente!",
+        });
+        if (confirma.isConfirmed) {
           window.location.reload();
-        }else{
-            window.location.reload();
-        }
         } else {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "No se pudo eliminar la solicitud.",
-          });
+          window.location.reload();
         }
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "No se pudo eliminar la solicitud.",
+        });
       }
+    }
   }
 
   return (
     <>
-     <section className="mi-perfil-section">
-    <div className="container">
-   
-      <MDBContainer className="py-5">
-        <MDBRow>
-          <MDBCol lg="6">
-            <MDBCard className="mb-4">
-              <MDBCardBody className="text-center">
-              <MDBCardImage
-                    id="img"
-                    src={usuario.img}
-                    alt="avatar"
-                    className="rounded-circle"
-                    style={{width: "100px", height:"90px"}}
-                    fluid
-                  />
-                <div className="d-flex justify-content-between align-items-center p-3 mt-3">
-                  <button
-                    className="btn btn-editar"
-                    onClick={handleOpenEditModal}
-                  >
-                    Editar
-                </button>
-                </div>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-          <MDBCol lg="6">
-            <MDBCard className="card-info" >
-              <MDBCardBody>
-                <MDBListGroup flush className="list-group">
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center custom-list-item">
-                    <i className="fas fa-user fa-lg text-primary"></i>
-                    <span className="fw-bold">Nombre:</span>
-                    <span className="text-muted ms-4 me-2">
-                      {usuario?.nombre}
-                    </span>
-                  </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center custom-list-item">
-                    <i className="fas fa-envelope fa-lg text-primary"></i>
-                    <span className="fw-bold">Correo:</span>
-                    <span className="text-muted ms-4">
-                      {usuario?.correo}
-                    </span>
-                  </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center custom-list-item">
-                    <i className="fas fa-id-card fa-lg text-primary"></i>
-                    <span className="fw-bold">Direccion:</span>
-                    <span className="text-muted ms-4 me-2">
-                      {usuario?.direccion}
-                    </span>
-                  </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center custom-list-item">
-                    <i className="fas fa-phone fa-lg text-primary"></i>
-                    <span className="fw-bold">Telefono:</span>
-                    <span className="text-muted ms-4 me-2">
-                      (+502) {usuario?.telefono}
-                    </span>
-                  </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center custom-list-item">
-                    <i className="fas fa-phone fa-lg text-primary"></i>
-                    <span className="fw-bold">Tipo Sangre:</span>
-                    <span className="text-muted ms-4 me-2">
-                      {usuario?.tipoSangre}
-                    </span>
-                  </MDBListGroupItem>
-                </MDBListGroup>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-        </MDBRow>
-        <MDBRow className="my-4">
-          <MDBCol lg="6">
-            <MDBCard className="card-donaciones">
-              <MDBCardBody>
-                <h5 className="mb-4">Donaciones</h5>
-                {usuario.donaciones &&
-                usuario.donaciones.length === 0 ? (
-                  <p className="text-muted">No hay donaciones</p>
-                ) : (
-                  <MDBListGroup flush>
+      <section className="mi-perfil-section">
+        <div className="container">
+
+          <MDBContainer className="py-5">
+            <MDBRow>
+              <MDBCol lg="6">
+                <MDBCard className="mb-4">
+                  <MDBCardBody className="text-center">
+                    <MDBCardImage
+                      id="img"
+                      src={usuario.img}
+                      alt="avatar"
+                      className="rounded-circle"
+                      style={{ width: "100px", height: "90px" }}
+                      fluid
+                    />
+                    <div className="d-flex justify-content-between align-items-center p-3 mt-3">
+                      <button
+                        className="btn btn-editar"
+                        onClick={handleOpenEditModal}
+                      >
+                        Editar
+                      </button>
+                    </div>
+                  </MDBCardBody>
+                </MDBCard>
+              </MDBCol>
+              <MDBCol lg="6">
+                <MDBCard className="card-info" >
+                  <MDBCardBody>
+                    <MDBListGroup className="list-group">
+                      <MDBListGroupItem className="d-flex justify-content-between align-items-center custom-list-item">
+                        <i className="fas fa-user fa-lg text-primary"></i>
+                        <span className="fw-bold">Nombre:</span>
+                        <span className="text-muted ms-4 me-2">
+                          {usuario?.nombre}
+                        </span>
+                      </MDBListGroupItem>
+                      <MDBListGroupItem className="d-flex justify-content-between align-items-center custom-list-item">
+                        <i className="fas fa-envelope fa-lg text-primary"></i>
+                        <span className="fw-bold">Correo:</span>
+                        <span className="text-muted ms-4">
+                          {usuario?.correo}
+                        </span>
+                      </MDBListGroupItem>
+                      <MDBListGroupItem className="d-flex justify-content-between align-items-center custom-list-item">
+                        <i className="fas fa-id-card fa-lg text-primary"></i>
+                        <span className="fw-bold">Direccion:</span>
+                        <span className="text-muted ms-4 me-2">
+                          {usuario?.direccion}
+                        </span>
+                      </MDBListGroupItem>
+                      <MDBListGroupItem className="d-flex justify-content-between align-items-center custom-list-item">
+                        <i className="fas fa-phone fa-lg text-primary"></i>
+                        <span className="fw-bold">Telefono:</span>
+                        <span className="text-muted ms-4 me-2">
+                          (+502) {usuario?.telefono}
+                        </span>
+                      </MDBListGroupItem>
+                      <MDBListGroupItem className="d-flex justify-content-between align-items-center custom-list-item">
+                        <i className="fas fa-phone fa-lg text-primary"></i>
+                        <span className="fw-bold">Tipo Sangre:</span>
+                        <span className="text-muted ms-4 me-2">
+                          {usuario?.tipoSangre}
+                        </span>
+                      </MDBListGroupItem>
+                    </MDBListGroup>
+                  </MDBCardBody>
+                </MDBCard>
+              </MDBCol>
+            </MDBRow>
+            <MDBRow className="my-4">
+              <MDBCol lg="6">
+                <MDBCard className="card-donaciones">
+                  <MDBCardBody>
+                    <h5 className="mb-4">Donaciones</h5>
                     {usuario.donaciones &&
-                      usuario.donaciones.map((donacion) => (
-                        <MDBListGroupItem key={donacion.id}>
-                          <strong className="mx-2">Litros Donados:</strong>
-                          {donacion.litrosDonados}
-                          {donacion.solicitud?.usuarioSolicitante?.nombre}
-                        </MDBListGroupItem>
-                      ))}
-                  </MDBListGroup>
-                )}
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-          <MDBCol lg="6">
-            <MDBCard className="card-donaciones">
-              <MDBCardBody>
-                <h5 className="mb-4">Solicitudes</h5>
-                {usuario.solicitudes &&
-                usuario.solicitudes.length === 0 ? (
-                  <p className="text-muted">No hay solicitudes</p>
-                ) : (
-                  <MDBListGroup flush>
+                      usuario.donaciones.length === 0 ? (
+                      <p className="text-muted">No hay donaciones</p>
+                    ) : (
+                      <MDBListGroup>
+                        {usuario.donaciones &&
+                          usuario.donaciones.map((donacion) => (
+                            <MDBListGroupItem key={donacion._id}>
+                              <strong className="mx-2">Litros Donados:</strong>
+                              {donacion.litrosDonados}
+                              {donacion.solicitud?.usuarioSolicitante?.nombre}
+                            </MDBListGroupItem>
+                          ))}
+                      </MDBListGroup>
+                    )}
+                  </MDBCardBody>
+                </MDBCard>
+              </MDBCol>
+              <MDBCol lg="6">
+                <MDBCard className="card-donaciones">
+                  <MDBCardBody>
+                    <h5 className="mb-4">Solicitudes</h5>
                     {usuario.solicitudes &&
-                      usuario.solicitudes.map((solicitudes) => (
-                        <MDBListGroupItem key={solicitudes.id}>
-                          <div className="d-flex align-items-center">
-                            <p>
-                              <strong className="mx-2">
-                                Litros solicitados:
-                              </strong>
-                              {solicitudes.litros}
-                            </p>
-                          </div>
-                          <button className="btn btn-danger" onClick={()=>{
-                            eliminarSolicitud(solicitudes)
-                          }}> Eliminar </button>
-                        </MDBListGroupItem>
-                      ))}
-                  </MDBListGroup>
-                )}
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-    
-    </div>
-    </section> 
-    <Modal show={showEditModal} onHide={handleCloseEditModal}>
+                      usuario.solicitudes.length === 0 ? (
+                      <p className="text-muted">No hay solicitudes</p>
+                    ) : (
+                      <MDBListGroup>
+                        {usuario.solicitudes &&
+                          usuario.solicitudes.map((solicitud) => (
+                            <MDBListGroupItem key={solicitud._id}>
+                              <div className="d-flex align-items-center">
+                                <p>
+                                  <strong className="mx-2">Litros solicitados:</strong>
+                                  {solicitud.litros}
+                                </p>
+                              </div>
+                              <button
+                                className="btn btn-danger"
+                                onClick={() => {
+                                  eliminarSolicitud(solicitud);
+                                }}
+                              >
+                                Eliminar
+                              </button>
+                            </MDBListGroupItem>
+                          ))}
+                      </MDBListGroup>
+                    )}
+                  </MDBCardBody>
+                </MDBCard>
+              </MDBCol>
+            </MDBRow>
+          </MDBContainer>
+
+        </div>
+      </section>
+      <Modal show={showEditModal} onHide={handleCloseEditModal}>
         <Modal.Header closeButton>
           <Modal.Title>Editar Perfil</Modal.Title>
         </Modal.Header>

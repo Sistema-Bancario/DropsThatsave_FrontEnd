@@ -16,12 +16,9 @@ import InicioUser from './InicioUser';
 import NavbarAdmin from './NavbarAdmin';
 import ParticleBackground from './FondoAdmin';
 import HacerSolicitud from './Solicitudes/components/HacerSolicitud';
-<<<<<<< Updated upstream
 import { ContactoForm } from './ContactoForm';
-=======
 import { ListaSolicitudesAdmin } from './SolicitudesAdmin/components/ListaSolicitudes';
 import { MiPerfil } from './USER/components/MiUser';
->>>>>>> Stashed changes
 
 
 const AppRouter = () => {
@@ -74,9 +71,7 @@ const AppRouter = () => {
                         )
                     }
                 />
-<<<<<<< Updated upstream
-                
-=======
+
                 {/* MI PERFIL */}
                 <Route
                     path="/miPerfil"
@@ -92,7 +87,6 @@ const AppRouter = () => {
                         )
                     }
                 />
->>>>>>> Stashed changes
                 {/* LISTA DE SOLICITUDES */}
                 <Route
                     path="/ListaSolicitudes"

@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./CSS/NavbarUser.css";
 import { Navbar, Nav, Container, Dropdown, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { tieneEnfermedad, tieneTatuajes } from './Login/helpers/LoginHelper';
+import { apiMiPerfil } from './USER/api/apiUser';
 
 const CustomNavbar = () => {
+    const [usuario, setUsuario] = useState([]);
+
+    const viewUsuario = async () => {
+        const getMiUsuario = await apiMiPerfil();
+        setUsuario(getMiUsuario);
+    };
+
+    useEffect(() => {
+        viewUsuario();
+    }, []);
     const logOut = () => {
         localStorage.removeItem("token");
         window.location.href = "/Login";
@@ -23,17 +34,16 @@ const CustomNavbar = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end align-items-center">
                         <Nav className="ml-auto">
-                            <Nav className="ml-auto">
-                                <Nav.Link href="/InicioUser">
-                                    Inicio
-                                    <span className="drop-container">
-                                        <span className="drop"></span>
-                                        <span className="drop"></span>
-                                        <span className="drop"></span>
-                                    </span>
-                                </Nav.Link>
-                                {tieneTatuajes() && tieneEnfermedad() && (
-                                <Nav.Link href="/ListaSolicitudes" >
+                            <Nav.Link as={Link} to="/InicioUser">
+                                Inicio
+                                <span className="drop-container">
+                                    <span className="drop"></span>
+                                    <span className="drop"></span>
+                                    <span className="drop"></span>
+                                </span>
+                            </Nav.Link>
+                            {tieneTatuajes() && tieneEnfermedad() && (
+                                <Nav.Link as={Link} to="/ListaSolicitudes">
                                     Donar
                                     <span className="drop-container">
                                         <span className="drop"></span>
@@ -41,50 +51,43 @@ const CustomNavbar = () => {
                                         <span className="drop"></span>
                                     </span>
                                 </Nav.Link>
-                                )}
-                                    <Nav.Link href="/hacerSolicitud">
-                                        Solicitar
-                                        <span className="drop-container">
-                                            <span className="drop"></span>
-                                            <span className="drop"></span>
-                                            <span className="drop"></span>
-                                        </span>
-                                    </Nav.Link>
-                                <Nav.Link href="#sobre-nosotros">
-                                    Sobre Nosotros
-                                    <span className="drop-container">
-                                        <span className="drop"></span>
-                                        <span className="drop"></span>
-                                        <span className="drop"></span>
-                                    </span>
-                                </Nav.Link>
-                                <Nav.Link href="/contacto">
-                                    Contacto
-                                    <span className="drop-container">
-                                        <span className="drop"></span>
-                                        <span className="drop"></span>
-                                        <span className="drop"></span>
-                                    </span>
-                                </Nav.Link>
-                            </Nav>
+                            )}
+                            <Nav.Link as={Link} to="/hacerSolicitud">
+                                Solicitar
+                                <span className="drop-container">
+                                    <span className="drop"></span>
+                                    <span className="drop"></span>
+                                    <span className="drop"></span>
+                                </span>
+                            </Nav.Link>
+                            <Nav.Link href="#sobre-nosotros">
+                                Sobre Nosotros
+                                <span className="drop-container">
+                                    <span className="drop"></span>
+                                    <span className="drop"></span>
+                                    <span className="drop"></span>
+                                </span>
+                            </Nav.Link>
+                            <Nav.Link href="/contacto">
+                                Contacto
+                                <span className="drop-container">
+                                    <span className="drop"></span>
+                                    <span className="drop"></span>
+                                    <span className="drop"></span>
+                                </span>
+                            </Nav.Link>
                         </Nav>
                         <Dropdown alignright={isAlignRight}>
                             <Dropdown.Toggle variant="link" id="profile-dropdown">
-                                <Image src="https://st1.uvnimg.com/98/f4/9b4500ef4da7a3129b32c906df97/lionel-messi.jpeg" roundedCircle width="60" height="60" />
+                                <Image src={usuario.img} roundedCircle width="60" height="60" />
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item>
-                                    <Link to="/miPerfil">Ver Mi Perfil</Link>
+                                <Dropdown.Item as={Link} to="/miPerfil">
+                                    Ver Mi Perfil
                                 </Dropdown.Item>
                                 <Dropdown.Divider />
-                                <Dropdown.Item>
-                                    <Link
-                                        aria-current="page"
-                                        to="/"
-                                        onClick={() => logOut()}
-                                    >
-                                        Cerrar Sesion
-                                    </Link>
+                                <Dropdown.Item onClick={() => logOut()}>
+                                    Cerrar Sesion
                                 </Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
