@@ -9,7 +9,6 @@ import { ListaAdmins } from "./ADMIN/components/ListaAdmins"
 import { CreateUserAdmin } from "./ADMIN/components/AgregarAdmin"
 import { ListaSolicitudess } from './Solicitudes/components/ListaSolicitudes';
 import { CreateBanco } from './Banco/components/AgregarBancos';
-import NavbarUser from './NavbarUser';
 import Fondo from './Fondo';
 import Registro from './USER/components/Registro';
 import InicioUser from './InicioUser';
@@ -21,6 +20,9 @@ import { ListaSolicitudesAdmin } from './SolicitudesAdmin/components/ListaSolici
 import { MiPerfil } from './USER/components/MiUser';
 import { CreateCita } from './Cita/components/AgregarCita';
 import { MisCitas } from './Cita/components/VerMisCitas';
+import NavbarUser from './NavbarUser';
+import Contenidouno from '../src/components/content1';
+
 
 
 const AppRouter = () => {
@@ -42,6 +44,7 @@ const AppRouter = () => {
                     }
                 />
 
+
                 {/* LOGIN */}
                 <Route
                     path="/Login"
@@ -49,6 +52,7 @@ const AppRouter = () => {
                         <Login></Login>
                     }
                 />
+
                 {/* REGISTRO */}
                 <Route
                     path="/Registro"
@@ -58,6 +62,21 @@ const AppRouter = () => {
                 />
 
                 {/* UUUSSSUUUAAARRRIIIOOO */}
+
+                <Route
+                    path="/sobreNosotros"
+                    element={
+                       isUser() ? (
+                            <>
+                                <NavbarUser></NavbarUser>
+                                <Contenidouno></Contenidouno>
+                                <Fondo></Fondo>
+                            </>
+                        ) : (
+                            <Navigate to="/Login" />
+                        )
+                    }
+                />
                 {/* INICIO DE USUARIO */}
                 <Route
                     path="/InicioUser"

@@ -4,7 +4,7 @@ import { sendData } from "../helpers/solicitudHelper";
 export const FormSolicitud = ({ solicitud, option, _id }) => {
   const [state, setState] = useState({
     litros: solicitud.litros || "",
-    enfermedad: solicitud.enfermedad === null ? "no" : solicitud.enfermedad, // Inicializamos el estado de enfermedad como "no" si es null
+    enfermedad: solicitud.enfermedad === null ? "no" : solicitud.enfermedad, 
   });
 
   const handleSubmit = (event) => {

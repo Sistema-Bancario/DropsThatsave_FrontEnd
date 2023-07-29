@@ -21,7 +21,7 @@ const HacerSolicitud = () => {
 
     const [agregar, setAgregar] = useState({
         solicitude: {
-            tipoSangre: "", // Establece el valor inicial a una cadena vacía
+            tipoSangre: "",
             banco: "",
             litros: 0,
         },
@@ -47,6 +47,15 @@ const HacerSolicitud = () => {
         <>
             <div className="container table-container">
                 <br /><br />
+
+                <div className="heading">
+                    <h1 className="heading__title">Solicita tu tipo de Sangre</h1>
+                    <p className="heading__credits">
+                        <a className="heading__link" >
+                            Solicita y que te ayuden
+                        </a>
+                    </p>
+                </div>
                 {tieneTatuajes() && tieneEnfermedad() && (
                     <Link to="/InicioUser">
                         <Button className=''>Regresar</Button>
@@ -61,11 +70,11 @@ const HacerSolicitud = () => {
                             className="form-control"
                             name="tipoSangre"
                             required
-                            value={agregar.solicitude.tipoSangre} 
+                            value={agregar.solicitude.tipoSangre}
                             onChange={(event) =>
                                 setAgregar({
                                     ...agregar,
-                                    solicitude: { 
+                                    solicitude: {
                                         ...agregar.solicitude,
                                         tipoSangre: event.target.value,
                                     },
@@ -112,7 +121,7 @@ const HacerSolicitud = () => {
                             type="number"
                             className="form-control"
                             name="litros"
-                            min="0" 
+                            min="0"
                             required
                             onChange={(event) =>
                                 setAgregar({

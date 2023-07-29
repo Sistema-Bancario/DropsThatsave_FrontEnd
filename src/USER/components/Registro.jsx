@@ -73,7 +73,7 @@ function Registro() {
             <IoIosArrowBack size={50} style={{ color: 'black' }} />
 
           </Link>
-          <h1 id="create-tarea">Agregar Administrador</h1>
+          <h1 id="create-tarea">Regístrate</h1>
         </div>
         <MDBContainer>
           <form onSubmit={handleSubmit}>

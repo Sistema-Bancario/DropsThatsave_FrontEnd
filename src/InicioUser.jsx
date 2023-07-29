@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import "./CSS/InicioUser.css";
 import imagenCuadro1 from "./img/donar.jpg";
 import imagenCuadro2 from "./img/solicitar.jpg";
-import imagenCuadro3 from "./img/agendar.png";
+import agendar from "./img/agendar.png";
 
 import { tieneEnfermedad, tieneTatuajes } from './Login/helpers/LoginHelper';
 
@@ -33,7 +33,7 @@ const InicioUser = () => {
         <Link to="/hacerCita" className="box-link">
           <div className="boxes">
             <div className="contenidocua">
-              <img src={imagenCuadro3} alt="Imagen Cuadro 1" />
+              <img src={agendar} alt="Imagen Cuadro 1" />
               <div className="centered-text">Agendar Cita</div>
             </div>
           </div>

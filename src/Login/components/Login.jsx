@@ -11,6 +11,9 @@ import { Button } from "react-bootstrap";
 import { apiLogin } from '../api/apiLogin';
 import "./../../CSS/Login.css"
 import Swal from 'sweetalert2';
+import { IoIosArrowBack } from 'react-icons/io'
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -45,12 +48,24 @@ export const Login = () => {
     return (
         <MDBContainer className='container' style={{ minHeight: '100svh', display: 'grid', alignItems: 'center', }} fluid>
             <MDBRow>
+                <div
+                    style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+                >
+                    <Link to="/">
+
+                        <IoIosArrowBack size={50} style={{ color: 'black' }} />
+
+                    </Link>
+                    <h1 id="create-tarea"></h1>
+                </div>
                 <MDBCol
                     style={{
                         backgroundColor: 'rgb(146, 0, 0)',
                         color: 'white'
                     }}
                     sm="6">
+
+
                     <div className="d-flex flex-row ps-5 pt-5">
                         <span id="title" className="h1 fw-bold mb-0">
                             LOG IN
@@ -59,7 +74,6 @@ export const Login = () => {
                     <div
                         className="d-flex flex-column justify-content-center h-custom-2 w-75 pt-4">
 
-                        {/* <Link to="/"><Button className='regresarAdmin'>Regresar</Button></Link> */}
                         <br></br>
                         <br></br>
                         <br></br>

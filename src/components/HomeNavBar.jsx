@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import logo from '../../public/bigLogo.png'
+// import logo from '../../public/bigLogo.png'
 import { BiSolidDroplet } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 

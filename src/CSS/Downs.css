@@ -22,3 +22,22 @@ select {
     box-shadow: 0 0 0 0.2rem rgba(7, 7, 223, 0.25) !important;
   }
   
+  body {
+  font-family: 'Time New Roman', serif;
+} 
+
+.containerjr {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-containerjr {
+  flex: 0 0 calc(33.33% - 20px); 
+  margin: 5px; 
+}
+
+.cardjr {
+  max-width: 29rem;
+  max-height: 10rem;
+}

@@ -45,6 +45,13 @@
 
 @media (max-width: 600px) {
   .contenedorcuar {
-    flex-direction: column;
+   justify-content: flex-start;
+      flex-direction: column;
+      gap: 30px; 
+      padding-top: 20px;
+  }
+
+  .boxes{
+      margin: auto; /* Centrar las tarjetas en modo responsive */
   }
 }

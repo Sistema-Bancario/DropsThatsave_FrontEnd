@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io'
 import { BiSolidDroplet } from 'react-icons/bi'
-import bg from './../../public/bg.jpeg'
+import bg from '../img/bg.jpeg'
 import 'animate.css'
 
 const slides = [

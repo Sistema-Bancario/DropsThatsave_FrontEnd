@@ -15,7 +15,7 @@ const PasosCards = () => {
           <p>
             Registrate y llena formulario
           </p>
-          <Link>
+          <Link to="/Registro">
             Registrate Aqui
           </Link>
         </div>

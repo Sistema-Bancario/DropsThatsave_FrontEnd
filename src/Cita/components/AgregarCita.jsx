@@ -25,7 +25,7 @@ export const CreateCita = () => {
                 <div className="container table-container">
                     <br /><br />
                     <Link to="/InicioUser"><Button className=''>Regresar</Button></Link>
-                    <Link to="/InicioUser"><Button className=''>Ver citas</Button></Link>
+                    <Link to="/MisCitas"><Button className=''>Ver citas</Button></Link>
                     <Link to="/InicioUser"><Button className=''>Regresar</Button></Link>
 
                     <h1 id="create-cita" className="text-white">Agendar Cita</h1>

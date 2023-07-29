@@ -6,8 +6,8 @@ export const AceptarSolicitud = ({ isOpen, onClose, solicitud }) => {
   if (!isOpen) {
     return null;
   }
- const id = solicitud._id;
- console.log(id)
+  const id = solicitud._id;
+  console.log(id)
   return (
     <>
       <>
@@ -19,7 +19,7 @@ export const AceptarSolicitud = ({ isOpen, onClose, solicitud }) => {
             <FormSolicitud
               solicitud={solicitud}
               option={1}
-              id={id} // Asegúrate de que el valor de 'id' sea correcto
+              id={id} 
 
             />
 

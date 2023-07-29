@@ -72,7 +72,7 @@ export const ListaSolicitudesAdmin = () => {
 
   return (
     <>
-      <div class="main-container">
+      <div class="lista-admins-container">
         <div class="heading">
           <h1 class="heading__title">Solicitudes</h1>
           <p class="heading__credits">

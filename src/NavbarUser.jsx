@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { tieneEnfermedad, tieneTatuajes } from './Login/helpers/LoginHelper';
 import { apiMiPerfil } from './USER/api/apiUser';
 
-const CustomNavbar = () => {
+const NavbarUser = () => {
     const [usuario, setUsuario] = useState([]);
 
     const viewUsuario = async () => {
@@ -60,7 +60,15 @@ const CustomNavbar = () => {
                                     <span className="drop"></span>
                                 </span>
                             </Nav.Link>
-                            <Nav.Link href="/MisCitas">
+                            <Nav.Link as={Link} to="/MisCitas">
+                                Mis Citas
+                                <span className="drop-container">
+                                    <span className="drop"></span>
+                                    <span className="drop"></span>
+                                    <span className="drop"></span>
+                                </span>
+                            </Nav.Link>
+                            <Nav.Link as={Link} to="/sobreNosotros">
                                 Sobre Nosotros
                                 <span className="drop-container">
                                     <span className="drop"></span>
@@ -68,7 +76,7 @@ const CustomNavbar = () => {
                                     <span className="drop"></span>
                                 </span>
                             </Nav.Link>
-                            <Nav.Link href="/contacto">
+                            <Nav.Link as={Link} to="/contacto">
                                 Contacto
                                 <span className="drop-container">
                                     <span className="drop"></span>
@@ -98,4 +106,5 @@ const CustomNavbar = () => {
     );
 };
 
-export default CustomNavbar;
+export default NavbarUser ;
+
