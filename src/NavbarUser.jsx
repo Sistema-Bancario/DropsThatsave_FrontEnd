@@ -42,6 +42,14 @@ const NavbarUser = () => {
                                     <span className="drop"></span>
                                 </span>
                             </Nav.Link>
+                            <Nav.Link as={Link} to="/hacerSolicitud">
+                                Solicitar
+                                <span className="drop-container">
+                                    <span className="drop"></span>
+                                    <span className="drop"></span>
+                                    <span className="drop"></span>
+                                </span>
+                            </Nav.Link>
                             {tieneTatuajes() && tieneEnfermedad() && (
                                 <Nav.Link as={Link} to="/ListaSolicitudes">
                                     Donar
@@ -52,22 +60,29 @@ const NavbarUser = () => {
                                     </span>
                                 </Nav.Link>
                             )}
-                            <Nav.Link as={Link} to="/hacerSolicitud">
-                                Solicitar
-                                <span className="drop-container">
-                                    <span className="drop"></span>
-                                    <span className="drop"></span>
-                                    <span className="drop"></span>
-                                </span>
-                            </Nav.Link>
-                            <Nav.Link as={Link} to="/MisCitas">
-                                Mis Citas
-                                <span className="drop-container">
-                                    <span className="drop"></span>
-                                    <span className="drop"></span>
-                                    <span className="drop"></span>
-                                </span>
-                            </Nav.Link>
+                            {tieneTatuajes() && tieneEnfermedad() && (
+
+                                <Nav.Link as={Link} to="/hacerCita">
+                                    Hacer cita
+                                    <span className="drop-container">
+                                        <span className="drop"></span>
+                                        <span className="drop"></span>
+                                        <span className="drop"></span>
+                                    </span>
+                                </Nav.Link>
+                            )}
+                            {tieneTatuajes() && tieneEnfermedad() && (
+
+                                <Nav.Link as={Link} to="/MisCitas">
+                                    Mis Citas
+                                    <span className="drop-container">
+                                        <span className="drop"></span>
+                                        <span className="drop"></span>
+                                        <span className="drop"></span>
+                                    </span>
+                                </Nav.Link>
+                            )}
+
                             <Nav.Link as={Link} to="/sobreNosotros">
                                 Sobre Nosotros
                                 <span className="drop-container">
@@ -106,5 +121,5 @@ const NavbarUser = () => {
     );
 };
 
-export default NavbarUser ;
+export default NavbarUser;
 

@@ -50,29 +50,26 @@ export const reagendarCita = async (id, nuevaFecha, nuevaHora) => {
   }
 };
 
-export const hacerCita = async ({ solicitudId, fecha, hora }) => {
+export const hacerCita = async ({ donacionId, fecha, hora }) => {
   try {
     const response = await axios.post(
       `${URL}agendarCita`,
       {
-        solicitudId: solicitudId,
+        donacionId: donacionId,
         fecha: fecha,
         hora: hora,
       },
       { headers: { "x-token": token } }
     );
     return true;
-  } catch ({ response: { data } }) {
-    Swal.fire({
-      icon: "error",
-      title: "Ocurrió un error",
-      text: "No se pudo agendar la cita",
-    });
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.msg) {
+      throw new Error(error.response.data.msg);
+    } else {
+      throw new Error("Error al agendar la cita");
+    }
   }
 };
-
-
-
 
 
 export const eliminarCita = async (id) => {

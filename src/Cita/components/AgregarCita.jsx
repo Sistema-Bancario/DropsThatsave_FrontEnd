@@ -1,66 +1,77 @@
-import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { apiMiPerfil } from "../../USER/api/apiUser";
 import { sendData } from "../helper/citasHelper";
 
 export const CreateCita = () => {
     const [citaData, setCitaData] = useState({
-        solicitudId: "",
+        donacionId: "",
         fecha: "",
-        hora: ""
+        hora: "",
     });
+
+    const [donaciones, setDonaciones] = useState([]);
+
+    useEffect(() => {
+        obtenerMiPerfil();
+    }, []);
+
+    const obtenerMiPerfil = async () => {
+        try {
+            const miPerfil = await apiMiPerfil();
+            setDonaciones(miPerfil.donaciones || []);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("State antes de llamar a sendData:", citaData);
         sendData(citaData, 1, 0);
-      }
-      
-      
+    };
 
     return (
         <>
             <div className="lista-citas-container">
-
                 <div className="container table-container">
-                    <br /><br />
-                    <Link to="/InicioUser"><Button className=''>Regresar</Button></Link>
-                    <Link to="/MisCitas"><Button className=''>Ver citas</Button></Link>
-                    <Link to="/InicioUser"><Button className=''>Regresar</Button></Link>
+                    <br />
+                    <br />
+                    <Link to="/InicioUser">
+                        <Button className="">Regresar</Button>
+                    </Link>
+                    <Link to="/MisCitas">
+                        <Button className="">Ver citas</Button>
+                    </Link>
 
-                    <h1 id="create-cita" className="text-white">Agendar Cita</h1>
+
+                    <h1 id="create-cita" className="text-white">
+                        Agendar Cita
+                    </h1>
+
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label className="text-white">Solicitud ID</label>
-                            <input
-                                type="text"
+                            <label className="text-white">Donación</label>
+                            <select
                                 className="form-control"
-                                name="solicitudId"
+                                name="donacionId"
                                 required
                                 onChange={(event) =>
                                     setCitaData({
                                         ...citaData,
-                                        solicitudId: event.target.value
+                                        donacionId: event.target.value,
                                     })
                                 }
-                            />
+                            >
+                                <option value="">Seleccione una donación</option>
+                                {donaciones.map((donacion) => (
+                                    <option key={donacion._id} value={donacion._id}>
+                                        ID de Donación: {donacion._id} <br />
+                                        - Solicitante: {donacion.solicitud?.usuarioSolicitante?.nombre || "No disponible"}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
-
-                        {/* <div className="form-group">
-                            <label className="text-white">Usuario Donante ID</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="usuarioDonanteId"
-                                required
-                                onChange={(event) =>
-                                    setCitaData({
-                                        ...citaData,
-                                        usuarioDonanteId: event.target.value
-                                    })
-                                }
-                            />
-                        </div> */}
 
                         <div className="form-group">
                             <label className="text-white">Fecha</label>

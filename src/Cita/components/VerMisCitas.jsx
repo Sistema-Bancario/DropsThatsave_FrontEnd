@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import { apiMisCitas } from "../api/apiCita";
 import { UpdateCita } from "./UpdateCita";
 import { cita } from "../model/cita";
-import { Card, Button, CardGroup } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import "../../CSS/Downs.css";
 
 export const MisCitas = () => {
@@ -43,46 +43,61 @@ export const MisCitas = () => {
   };
 
   return (
-    <>
-      <div className="containerjr mt-4 mb-5">
-        <br />
-
-        <div className="heading">
-          <h1 className="heading__title">Mis Citas</h1>
-          <p className="heading__credits">
-            <a className="heading__link">Todas las citas que tienes</a>
-          </p>
-        </div>
-        <div className="containerjr">
-          {listaCitas.map((cita) => (
-            <div key={cita._id} className="card-containerjr">
-              <Card className="cardjr mb-3">
-                <Card.Body style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                  <div>
-                    <Card.Title>ID de Cita: {cita._id}</Card.Title>
-                    <Card.Text style={{ fontSize: "25px" }}>Fecha: {formatearFecha(cita.fecha)}</Card.Text>
-                    <Card.Text style={{ fontSize: "25px" }}>Hora: {cita.hora}</Card.Text>
-                    <Card.Text style={{ fontSize: "25px" }}>Estado: {cita.estado}</Card.Text>
-                  </div>
-                  <div>
-                    <Button variant="warning" onClick={() => handleOpenModal(cita)}>
-                      Editar
-                    </Button>
-                    <Button variant="primary" onClick={() => handleOpenModal(cita)}>
-                      Eliminar
-                    </Button>
-                  </div>
-                </Card.Body>
-              </Card>
-            </div>
-          ))}
-        </div>
+    <div className=" mt-4 mb-5">
+      <div className="heading">
+        <h1 className="heading__title">Mis Citas</h1>
+        <p className="heading__credits">
+          <a className="heading__link">Todas las citas que tienes</a>
+        </p>
       </div>
-      <UpdateCita
-        citaEdit={citas}
-        isOpen={showModal}
-        onClose={handleCloseModal}
-      />
-    </>
+      <div className="containerjr">
+        {listaCitas.map((cita) => (
+          <div key={cita._id} className="card-containerjr">
+            <Card className="cardjr">
+              <Card.Body>
+                <Card.Title>ID de Cita: {cita._id}</Card.Title>
+                {cita.donacion && cita.donacion.solicitud && cita.donacion.solicitud.banco ? (
+                  <>
+                    <Card.Text>Banco: {cita.donacion.solicitud.banco.nombre}</Card.Text>
+                    <Card.Text>Dirección: {cita.donacion.solicitud.banco.direccion}</Card.Text>
+                    <Card.Text>Tel. Banco: {cita.donacion.solicitud.banco.telefono}</Card.Text>
+                  </>
+                ) : (
+                  <>
+                    <Card.Text>Banco: No disponible</Card.Text>
+                    <Card.Text>Dirección: No disponible</Card.Text>
+                    <Card.Text>Tel Banco: No disponible</Card.Text>
+                  </>
+                )}
+
+                {cita.donacion && cita.donacion.solicitud && cita.donacion.solicitud.usuarioSolicitante ? (
+                  <>
+                    <Card.Text>Usuario Solicitante: {cita.donacion.solicitud.usuarioSolicitante.nombre}</Card.Text>
+                  </>
+                ) : (
+                  <>
+                    <Card.Text>Usuario Solicitante: No disponible</Card.Text>
+                  </>
+                )}
+
+                <Card.Text>Fecha: {formatearFecha(cita.fecha)}</Card.Text>
+                <Card.Text>Hora: {cita.hora}</Card.Text>
+                <Card.Text>Estado: {cita.estado}</Card.Text>
+
+                <div className="card-button-container">
+                  <Button variant="warning" onClick={() => handleOpenModal(cita)}>
+                    Editar
+                  </Button>
+                  <Button variant="primary" onClick={() => handleOpenModal(cita)}>
+                    Eliminar
+                  </Button>
+                </div>
+              </Card.Body>
+            </Card>
+          </div>
+        ))}
+      </div>
+      <UpdateCita citaEdit={citas} isOpen={showModal} onClose={handleCloseModal} />
+    </div>
   );
 };

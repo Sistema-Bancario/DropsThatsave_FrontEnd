@@ -33,11 +33,17 @@ select {
 }
 
 .card-containerjr {
-  flex: 0 0 calc(33.33% - 20px); 
-  margin: 5px; 
+  flex: 0 0 calc(33.33% - 20px);
+  margin: 10px;
 }
 
 .cardjr {
-  max-width: 29rem;
-  max-height: 10rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.card-button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }

@@ -71,7 +71,7 @@ export const ListaSolicitudess = () => {
   return (
     <>
       <div className="main-container">
-      <br /><br />
+        <br /><br />
         <div className="heading">
           <h1 className="heading__title">Solicitudes</h1>
           <p className="heading__credits">
@@ -82,6 +82,8 @@ export const ListaSolicitudess = () => {
         </div>
         <div className="cardsee">
           {listaSolicitudes.map((solicitud) => {
+            const litrosDisponibles = solicitud.litros;
+            const canDonar = litrosDisponibles > 0;
             return (
               <div
                 key={solicitud._id}
@@ -93,13 +95,14 @@ export const ListaSolicitudess = () => {
                 <p>Tipo de Sangre: {solicitud.tipoSangre}</p>
                 <p>Banco: {solicitud.banco.nombre}</p>
                 <p>Solicita {solicitud.litros} Litros</p>
-                <button className="btn btn-primary btn-small" onClick={() => handleOpenModal(solicitud)}>
+
+                <button className="btn btn-primary btn-small" onClick={() => handleOpenModal(solicitud)} disabled={!canDonar}>
                   Donar
                 </button>
-
               </div>
             );
           })}
+
         </div>
       </div>
 

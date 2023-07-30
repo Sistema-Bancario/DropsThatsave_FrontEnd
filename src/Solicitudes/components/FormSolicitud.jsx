@@ -4,7 +4,7 @@ import { sendData } from "../helpers/solicitudHelper";
 export const FormSolicitud = ({ solicitud, option, _id }) => {
   const [state, setState] = useState({
     litros: solicitud.litros || "",
-    enfermedad: solicitud.enfermedad === null ? "no" : solicitud.enfermedad, 
+    enfermedad: solicitud.enfermedad === null ? "no" : solicitud.enfermedad,
   });
 
   const handleSubmit = (event) => {
@@ -18,10 +18,12 @@ export const FormSolicitud = ({ solicitud, option, _id }) => {
         <div className="form-group">
           <label className="text-black">Cantidad de litros: </label>
           <input
-            type="text"
+            type="number"
             className="form-control"
             name="litros"
             value={state.litros}
+            required
+            min="0"
             onChange={(event) =>
               setState({
                 ...state,
@@ -40,6 +42,7 @@ export const FormSolicitud = ({ solicitud, option, _id }) => {
                 name="enfermedad"
                 value="si"
                 checked={state.enfermedad === "si"}
+                required
                 onChange={(event) =>
                   setState({
                     ...state,

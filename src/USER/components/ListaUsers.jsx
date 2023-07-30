@@ -78,6 +78,7 @@ export const ListaUsers = () => {
                   <th scope="col">Teléfono</th>
                   <th scope="col">Dirección</th>
                   <th scope="col">Tatuajes</th>
+                  <th scope="col">Acciones</th>
                 </tr>
               </thead>
               <tbody>

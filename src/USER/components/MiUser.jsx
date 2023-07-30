@@ -181,8 +181,9 @@ export const MiPerfil = () => {
                           usuario.donaciones.map((donacion) => (
                             <MDBListGroupItem key={donacion._id}>
                               <strong className="mx-2">Litros Donados:</strong>
-                              {donacion.litrosDonados}
-                              {donacion.solicitud?.usuarioSolicitante?.nombre}
+                              {donacion.litrosDonados} 
+                              <br />
+                              <strong className="mx-2">Solicitante:</strong>{donacion.solicitud?.usuarioSolicitante?.nombre}
                             </MDBListGroupItem>
                           ))}
                       </MDBListGroup>
