@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { apiMisCitas } from "../api/apiCita";
+import { apiMisCitas, eliminarCita } from "../api/apiCita";
 import { UpdateCita } from "./UpdateCita";
 import { cita } from "../model/cita";
 import { Card, Button } from "react-bootstrap";
@@ -41,6 +41,27 @@ export const MisCitas = () => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
+
+  const eliminarBancos = async (id) => {
+    let result = await eliminarCita(id);
+    if (result) {
+        Swal.fire({
+            icon: "success",
+            title: "Genial!",
+            text: "Se eliminó correctamente!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+              obtenerMisCitas();
+            }
+        });
+    } else {
+        Swal.fire({
+            icon: "error",
+            title: "Falla presente",
+            text: "No se pudo eliminar!",
+        });
+    }
+};
 
   return (
     <div className=" mt-4 mb-5">
@@ -88,7 +109,7 @@ export const MisCitas = () => {
                   <Button variant="warning" onClick={() => handleOpenModal(cita)}>
                     Editar
                   </Button>
-                  <Button variant="primary" onClick={() => handleOpenModal(cita)}>
+                  <Button variant="primary" onClick={() => eliminarBancos(cita._id)}>
                     Eliminar
                   </Button>
                 </div>
