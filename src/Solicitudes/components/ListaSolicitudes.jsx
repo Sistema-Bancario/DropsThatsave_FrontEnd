@@ -94,6 +94,7 @@ export const ListaSolicitudess = () => {
                 <h2 className="card__title">Solicitante: {solicitud.usuarioSolicitante.nombre}</h2>
                 <p>Tipo de Sangre: {solicitud.tipoSangre}</p>
                 <p>Banco: {solicitud.banco.nombre}</p>
+                <p>Dirección: {solicitud.banco.direccion}</p>
                 <p>Solicita {solicitud.litros} Litros</p>
 
                 <button className="btn btn-primary btn-small" onClick={() => handleOpenModal(solicitud)} disabled={!canDonar}>
