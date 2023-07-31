@@ -1,7 +1,7 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 const token = localStorage.getItem("token");
-const URL = "http://localhost:8080/api/bancos/";
+const URL = "https://drops-thatsave-backend.vercel.app/api/bancos/";
 
 
 export const apiBancos = async () => {

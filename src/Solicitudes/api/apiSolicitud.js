@@ -2,7 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const token = localStorage.getItem("token");
-const URL = "http://localhost:8080/api/solicitudes/";
+const URL = "https://drops-thatsave-backend.vercel.app/api/solicitudes/";
 
 export const apiSolicitud = async () => {
   try {
@@ -48,7 +48,7 @@ export const aceptarSolicitud = async ({
  
   try {
     const response = await axios.post(
-      `http://localhost:8080/api/donaciones/aceptar`,
+      `https://drops-thatsave-backend.vercel.app/api/donaciones/aceptar`,
       {
         solicitud: idSolicitud ,
         litrosDonados: litrosDonados ,

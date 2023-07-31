@@ -2,7 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const token = localStorage.getItem("token");
-const URL = "http://localhost:8080/api/usuarios/";
+const URL = "https://drops-thatsave-backend.vercel.app/api/usuarios/";
 
 export const apiUser = async () => {
   try {
