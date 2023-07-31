@@ -34,7 +34,17 @@ const PasosCards = () => {
         <div className='card'>
           <h3>3</h3>
           <p>
-            Lorem ipsum dolor sit amet,
+            Donar a personas con el mismo tipo de snagre
+          </p>
+          <Link>
+            Aqui
+          </Link>
+        </div>
+
+        <div className='card'>
+          <h3>4</h3>
+          <p>
+           Solicitar tu tipo de sangre
           </p>
           <Link>
             Aqui
