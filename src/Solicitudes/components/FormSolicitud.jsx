@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 import { sendData } from "../helpers/solicitudHelper";
 
 export const FormSolicitud = ({ solicitud, option, _id }) => {
@@ -9,7 +10,18 @@ export const FormSolicitud = ({ solicitud, option, _id }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    sendData(state, 1, solicitud._id);
+    const cantidadLitrosSolicitud = solicitud.litros;
+    const cantidadLitrosDonacion = parseInt(state.litros);
+
+    if (cantidadLitrosDonacion <= cantidadLitrosSolicitud) {
+      sendData(state, 1, solicitud._id);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "La cantidad de litros donados no puede ser mayor a la cantidad de litros de la solicitud.",
+      });
+    }
   };
 
   return (
